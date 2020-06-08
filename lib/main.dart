@@ -28,35 +28,19 @@ class MonthValuesPage extends StatelessWidget {
     "December": 5,
   };
 
-  List<Widget> getMonthValueWidget(){
-    var monthWidgets = List<Widget>();
-    monthValues.forEach((key, value) {
-      monthWidgets.add(
-        Row(
-          children: <Widget>[
-            Container(
-                alignment: Alignment.center,
-                child: Text(
-                    key,
-                    style: TextStyle(
-                        fontSize: 35
-                    )
-                )
-            ),
-            Container(
-                alignment: Alignment.centerRight,
-                child: Text(
-                    value.toString(),
-                    style: TextStyle(
-                        fontSize: 35
-                    )
-                )
-            )
-          ],
+  final monthTableRowTextStyle = TextStyle(fontSize: 35);
+
+  TableRow getMonthTableRow(MapEntry<String, int> month) {
+    return TableRow(
+      children: [
+        TableCell(
+            child: Text(month.key, style: monthTableRowTextStyle)
+        ),
+        TableCell(
+            child: Text(month.value.toString(), style: monthTableRowTextStyle)
         )
-      );
-    });
-    return monthWidgets;
+      ]
+    );
   }
 
   @override
@@ -67,8 +51,8 @@ class MonthValuesPage extends StatelessWidget {
           appBar: AppBar(
               title: Text("Month Values")
           ),
-          body: Column(
-            children: this.getMonthValueWidget()
+          body: Table(
+            children: monthValues.entries.map(getMonthTableRow).toList()
           )
       ),
     );
