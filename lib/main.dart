@@ -34,10 +34,18 @@ class MonthValuesPage extends StatelessWidget {
     return TableRow(
         children: [
           TableCell(
-              child: Text(month.key, style: monthTableRowTextStyle, textAlign: TextAlign.right)
+              child: Text(
+                  month.key,
+                  style: monthTableRowTextStyle,
+                  textAlign: TextAlign.right
+              )
           ),
           TableCell(
-              child: Center(child: Text(month.value.toString(), style: monthTableRowTextStyle))
+              child: Text(
+                  month.value.toString(),
+                  style: monthTableRowTextStyle,
+                  textAlign: TextAlign.center
+              )
           )
         ]
     );
