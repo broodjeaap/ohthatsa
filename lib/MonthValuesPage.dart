@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'AppDrawer.dart';
+
 class MonthValuesPage extends StatelessWidget {
   final Map<String, int> monthValues = {
     "January": 0,
@@ -42,6 +44,7 @@ class MonthValuesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: AppDrawer(),
         appBar: AppBar(
             title: Text("Month Values")
         ),

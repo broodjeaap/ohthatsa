@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohthatsa/YearsPage.dart';
 
 import 'MonthValuesPage.dart';
 
@@ -12,7 +13,11 @@ class OhThatsA extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "OhThatsA",
-      home: MonthValuesPage()
+      initialRoute: '/monthValues',
+      routes: {
+        '/monthValues': (context) => MonthValuesPage(),
+        '/years': (context) => YearsPage(),
+      }
     );
   }
 }
