@@ -8,7 +8,10 @@ class OhThatsA extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MonthValuesPage();
+    return MaterialApp(
+      title: "OhThatsA",
+      home: MonthValuesPage()
+    );
   }
 }
 
@@ -53,9 +56,7 @@ class MonthValuesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "OhThatsA",
-      home: Scaffold(
+    return Scaffold(
           appBar: AppBar(
               title: Text("Month Values")
           ),
@@ -64,7 +65,6 @@ class MonthValuesPage extends StatelessWidget {
               children: monthValues.entries.map(getMonthTableRow).toList()
             )
           )
-      ),
-    );
+      );
   }
 }
