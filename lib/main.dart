@@ -32,14 +32,14 @@ class MonthValuesPage extends StatelessWidget {
 
   TableRow getMonthTableRow(MapEntry<String, int> month) {
     return TableRow(
-      children: [
-        TableCell(
-            child: Text(month.key, style: monthTableRowTextStyle)
-        ),
-        TableCell(
-            child: Text(month.value.toString(), style: monthTableRowTextStyle)
-        )
-      ]
+        children: [
+          TableCell(
+              child: Text(month.key, style: monthTableRowTextStyle, textAlign: TextAlign.right)
+          ),
+          TableCell(
+              child: Center(child: Text(month.value.toString(), style: monthTableRowTextStyle))
+          )
+        ]
     );
   }
 
@@ -51,8 +51,10 @@ class MonthValuesPage extends StatelessWidget {
           appBar: AppBar(
               title: Text("Month Values")
           ),
-          body: Table(
-            children: monthValues.entries.map(getMonthTableRow).toList()
+          body: Center(
+            child: Table(
+              children: monthValues.entries.map(getMonthTableRow).toList()
+            )
           )
       ),
     );
