@@ -6,6 +6,7 @@ steps:
   - name: test
     image: cirrusci/flutter:stable
     commands:
+      - sudo chown -R cirrus:cirrus .
       - flutter pub get
       - flutter pub run test
 trigger:
