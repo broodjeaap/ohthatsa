@@ -8,3 +8,8 @@ steps:
     commands:
       - pub get
       - pub run test
+trigger:
+  branch:
+    - master
+  event:
+    - push
