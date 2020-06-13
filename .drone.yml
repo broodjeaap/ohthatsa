@@ -4,7 +4,7 @@ name: default
 
 steps:
   - name: test
-    image: google/dart
+    image: cirrusci/flutter:stable
     commands:
       - flutter pub get
       - flutter pub run test
