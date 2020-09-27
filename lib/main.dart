@@ -13,7 +13,7 @@ class OhThatsA extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "OhThatsA",
-      initialRoute: '/monthValues',
+      initialRoute: '/years',
       routes: {
         '/monthValues': (context) => MonthValuesPage(),
         '/years': (context) => YearsPage(),
