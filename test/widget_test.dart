@@ -132,5 +132,74 @@ void main() {
         expect(DayCalculator.getCenturyValue(23049), equals(0));
       });
     });
+
+  });
+  group("DayCalculator isLeapYear()", () {
+    test("1800", (){
+      expect(DayCalculator.isLeapYear(1800), equals(false));
+    });
+    test("1835", (){
+      expect(DayCalculator.isLeapYear(1835), equals(false));
+    });
+    test("1836", (){
+      expect(DayCalculator.isLeapYear(1836), equals(true));
+    });
+    test("1880", (){
+      expect(DayCalculator.isLeapYear(1880), equals(true));
+    });
+    test("1900", (){
+      expect(DayCalculator.isLeapYear(1900), equals(false));
+    });
+    test("1904", (){
+      expect(DayCalculator.isLeapYear(1904), equals(true));
+    });
+    test("1906", (){
+      expect(DayCalculator.isLeapYear(1906), equals(false));
+    });
+    test("1924", (){
+      expect(DayCalculator.isLeapYear(1924), equals(true));
+    });
+    test("2000", (){
+      expect(DayCalculator.isLeapYear(2000), equals(true));
+    });
+    test("2012", (){
+      expect(DayCalculator.isLeapYear(2012), equals(true));
+    });
+    test("2048", (){
+      expect(DayCalculator.isLeapYear(2048), equals(true));
+    });
+    test("2064", (){
+      expect(DayCalculator.isLeapYear(2064), equals(true));
+    });
+    test("2100", (){
+      expect(DayCalculator.isLeapYear(2100), equals(false));
+    });
+    test("2172", (){
+      expect(DayCalculator.isLeapYear(2172), equals(true));
+    });
+    test("2139", (){
+      expect(DayCalculator.isLeapYear(2139), equals(false));
+    });
+    test("2199", (){
+      expect(DayCalculator.isLeapYear(2199), equals(false));
+    });
+    test("2200", (){
+      expect(DayCalculator.isLeapYear(2200), equals(false));
+    });
+    test("2250", (){
+      expect(DayCalculator.isLeapYear(2250), equals(false));
+    });
+    test("2292", (){
+      expect(DayCalculator.isLeapYear(2292), equals(true));
+    });
+    test("2300", (){
+      expect(DayCalculator.isLeapYear(2300), equals(false));
+    });
+    test("2323", (){
+      expect(DayCalculator.isLeapYear(2323), equals(false));
+    });
+    test("2400", (){
+      expect(DayCalculator.isLeapYear(2400), equals(true));
+    });
   });
 }
