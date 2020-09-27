@@ -49,4 +49,33 @@ class DayCalculator {
       }
     }
   }
+
+  static int getCenturyValue(int year){
+    // Returns the century code for the year
+    // TODO: Implement Julian calendar?
+    year = (year / 100).floor() * 100;
+    switch(year){
+      case 1700:{
+        return 4;
+      }
+      case 1800:{
+        return 2;
+      }
+      case 1900:{
+        return 0;
+      }
+      case 2000:{
+        return 6;
+      }
+      case 2100:{
+        return 4;
+      }
+      case 2200:{
+        return 2;
+      }
+      default:{ //2300
+        return 0;
+      }
+    }
+  }
 }
