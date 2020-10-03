@@ -50,6 +50,47 @@ class DayCalculator {
     }
   }
 
+  static int getMonthValueByString(String month){
+    switch(month){
+      case "January":{
+        return 0;
+      }
+      case "February":{
+        return 3;
+      }
+      case "March":{
+        return 3;
+      }
+      case "April":{
+        return 6;
+      }
+      case "May":{
+        return 1;
+      }
+      case "June":{
+        return 4;
+      }
+      case "July":{
+        return 6;
+      }
+      case "August":{
+        return 2;
+      }
+      case "September":{
+        return 5;
+      }
+      case "October":{
+        return 0;
+      }
+      case "November":{
+        return 3;
+      }
+      default:{
+        return 5;
+      }
+    }
+  }
+
   static int getCenturyValue(int year){
     // Returns the century code for the year
     // TODO: Implement Julian calendar?

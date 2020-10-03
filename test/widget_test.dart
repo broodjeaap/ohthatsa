@@ -54,6 +54,44 @@ void main() {
       expect(DayCalculator.getMonthValue(11), equals(5));
     });
   });
+  group("DayCalculator getMonthValueByString()", () {
+    test("January", () {
+      expect(DayCalculator.getMonthValueByString("January"), equals(0));
+    });
+    test("February", () {
+      expect(DayCalculator.getMonthValueByString("February"), equals(3));
+    });
+    test("March", () {
+      expect(DayCalculator.getMonthValueByString("March"), equals(3));
+    });
+    test("April", () {
+      expect(DayCalculator.getMonthValueByString("April"), equals(6));
+    });
+    test("May", () {
+      expect(DayCalculator.getMonthValueByString("May"), equals(1));
+    });
+    test("June", () {
+      expect(DayCalculator.getMonthValueByString("June"), equals(4));
+    });
+    test("July", () {
+      expect(DayCalculator.getMonthValueByString("July"), equals(6));
+    });
+    test("August", () {
+      expect(DayCalculator.getMonthValueByString("August"), equals(2));
+    });
+    test("September", () {
+      expect(DayCalculator.getMonthValueByString("September"), equals(5));
+    });
+    test("October", () {
+      expect(DayCalculator.getMonthValueByString("October"), equals(0));
+    });
+    test("November", () {
+      expect(DayCalculator.getMonthValueByString("November"), equals(3));
+    });
+    test("December", () {
+      expect(DayCalculator.getMonthValueByString("December"), equals(5));
+    });
+  });
   group("DayCalculator getCenturyValue()", () {
     group("1700s", () {
       test("1700", (){
