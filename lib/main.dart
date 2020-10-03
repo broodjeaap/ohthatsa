@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ohthatsa/MonthPracticeSetupPage.dart';
 import 'package:ohthatsa/YearsPage.dart';
 
+import 'MonthPracticePage.dart';
 import 'MonthValuesPage.dart';
 
 void main() {
@@ -17,6 +19,8 @@ class OhThatsA extends StatelessWidget {
       routes: {
         '/monthValues': (context) => MonthValuesPage(),
         '/years': (context) => YearsPage(),
+        '/practice/month/setup': (context) => MonthPracticeSetupPage(),
+        '/practice/month/practice': (context) => MonthPracticePage(),
       }
     );
   }
