@@ -17,7 +17,7 @@ class _YearsPageState extends State<YearsPage> {
     return Scaffold(
         drawer: AppDrawer(),
         appBar: AppBar(
-          title: Text("Overview"),
+          title: Text("Years"),
         ),
         body: Center(
             child: new Column(
