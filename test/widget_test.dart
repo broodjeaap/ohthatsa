@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:ohthatsa/DayCalculator.dart';
+import 'file:///D:/dev/projects/ohthatsa/lib/util/DayCalculator.dart';
 
 void main() {
   group("DayCalculator getYearValue() ", () {
