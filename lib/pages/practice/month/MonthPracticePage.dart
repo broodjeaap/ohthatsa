@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/month/MonthPracticeSetup.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/util/Months.dart';
 import "dart:math";
 
 import 'MonthPracticeAnswer.dart';
@@ -17,21 +18,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   int _correct = 0;
   int _incorrect = 0;
   static final _random = new Random();
-  static List<String> _months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-  String _month = _months[_random.nextInt(_months.length)];
+  String _month = Months.stringList[_random.nextInt(Months.length)];
   List<MonthPracticeAnswer> answers = new List<MonthPracticeAnswer>();
 
   Widget getAnswerRow(){
@@ -177,7 +164,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       return;
     }
     setState(() => {
-      _month = _months[_random.nextInt(_months.length)]
+      _month = Months.stringList[_random.nextInt(Months.length)]
     });
   }
 }

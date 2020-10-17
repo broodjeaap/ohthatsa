@@ -12,6 +12,8 @@ class Months {
   static final Month november = new Month("november", 10, 3);
   static final Month december = new Month("december", 11, 5);
 
+  static final int length = 12;
+
   static final List<Month> list = List.unmodifiable([
     january,
     february,
