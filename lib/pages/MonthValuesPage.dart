@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/util/Months.dart';
 
 class MonthValuesPage extends StatelessWidget {
-  final Map<String, int> monthValues = {
-    "January": 0,
-    "February": 3,
-    "March": 3,
-    "April": 6,
-    "May": 1,
-    "June": 4,
-    "July": 6,
-    "August": 2,
-    "September": 5,
-    "October": 0,
-    "November": 3,
-    "December": 5,
-  };
-
   final monthTableRowTextStyle = TextStyle(fontSize: 35);
 
-  TableRow getMonthTableRow(MapEntry<String, int> month) {
+  TableRow getMonthTableRow(MapEntry<String, Month> month) {
     return TableRow(
         children: [
           TableCell(
@@ -32,7 +18,7 @@ class MonthValuesPage extends StatelessWidget {
           ),
           TableCell(
               child: Text(
-                  month.value.toString(),
+                  month.value.value.toString(),
                   style: monthTableRowTextStyle,
                   textAlign: TextAlign.center
               )
@@ -50,7 +36,7 @@ class MonthValuesPage extends StatelessWidget {
         ),
         body: Center(
             child: Table(
-                children: monthValues.entries.map(getMonthTableRow).toList()
+                children: Months.stringMap.entries.map(getMonthTableRow).toList()
             )
         )
     );
