@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohthatsa/pages/practice/month/MonthPracticeSetup.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import "dart:math";
@@ -9,9 +10,9 @@ class MonthPracticePage extends StatefulWidget {
 }
 
 class _MonthPracticeState extends State<MonthPracticePage> {
-  int count = 0;
-  int correct = 0;
-  int incorrect = 0;
+  int _count = 0;
+  int _correct = 0;
+  int _incorrect = 0;
   static final _random = new Random();
   static List<String> _months = [
     "January",
@@ -33,6 +34,10 @@ class _MonthPracticeState extends State<MonthPracticePage> {
 
   @override
   Widget build(BuildContext context) {
+    MonthPracticeSetup setup = ModalRoute.of(context).settings.arguments;
+    if(_count == 0) {
+      _count = setup.count;
+    }
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
@@ -45,13 +50,15 @@ class _MonthPracticeState extends State<MonthPracticePage> {
               padding: EdgeInsets.all(20),
               child: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                 children: <Widget>[
                   new Text(
-                    "Correct: " + correct.toString()
+                      "Correct: " + _correct.toString()
                   ),
                   new Text(
-                    "Incorrect: " + incorrect.toString()
+                      _count.toString() + " left"
+                  ),
+                  new Text(
+                    "Incorrect: " + _incorrect.toString()
                   )
                 ],
               )
@@ -133,12 +140,16 @@ class _MonthPracticeState extends State<MonthPracticePage> {
 
   void checkMonth(int value){
     if(value == DayCalculator.getMonthValueByString(_month)){
-      correct += 1;
+      _correct += 1;
     } else {
-      incorrect += 1;
+      _incorrect += 1;
     }
-    setState(() =>
-        _month = _months[_random.nextInt(_months.length)]
-    );
+    _count -= 1;
+    setState(() => {
+      _month = _months[_random.nextInt(_months.length)]
+    });
+    if(_count == 0) {
+      Navigator.pop(context);
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/pages/practice/month/MonthPracticeSetup.dart';
 
 class MonthPracticeSetupPage extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class MonthPracticeSetupPage extends StatefulWidget {
 }
 
 class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
-  int _number = 5;
+  int _count = 5;
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -21,15 +22,19 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
           children: <Widget>[
             new Text("How many times would you like to practice?"),
             new NumberPicker.integer(
-                initialValue: _number,
+                initialValue: _count,
                 minValue: 1,
                 maxValue: 1000000,
                 onChanged: (newNumber) =>
-                    setState(() => _number = newNumber),
+                    setState(() => _count = newNumber),
             ),
             new FlatButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/practice/month/practice');
+                Navigator.pushNamed(
+                    context,
+                    '/practice/month/practice',
+                  arguments: MonthPracticeSetup(_count)
+                );
               },
               child: new Text("Start!"),
               color: Colors.blue,
