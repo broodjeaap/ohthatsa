@@ -4,12 +4,15 @@ import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import "dart:math";
 
+import 'MonthPracticeAnswer.dart';
+
 class MonthPracticePage extends StatefulWidget {
   @override
   _MonthPracticeState createState() => _MonthPracticeState();
 }
 
 class _MonthPracticeState extends State<MonthPracticePage> {
+  int _startCount = 0;
   int _count = 0;
   int _correct = 0;
   int _incorrect = 0;
@@ -29,15 +32,33 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     "December"
   ];
   String _month = _months[_random.nextInt(_months.length)];
+  List<MonthPracticeAnswer> answers = new List<MonthPracticeAnswer>();
 
-
+  Widget getAnswerRow(){
+    List<Widget> answerBoxes = new List<Widget>();
+    double screenWidth = MediaQuery.of(context).size.width;
+    for(MonthPracticeAnswer answer in answers){
+      Color c = Colors.green;
+      if(answer.month != answer.answer){
+        c = Colors.red;
+      }
+      answerBoxes.add(
+          new SizedBox(
+              width: screenWidth / _startCount,
+              height: 100,
+              child: new DecoratedBox(
+                  decoration: BoxDecoration(color: c)
+              )
+          )
+      );
+    }
+    return new Row(children: answerBoxes);
+  }
 
   @override
   Widget build(BuildContext context) {
     MonthPracticeSetup setup = ModalRoute.of(context).settings.arguments;
-    if(_count == 0) {
-      _count = setup.count;
-    }
+    _startCount = setup.count;
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
@@ -55,7 +76,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
                       "Correct: " + _correct.toString()
                   ),
                   new Text(
-                      _count.toString() + " left"
+                      (_startCount - _count).toString() + " left"
                   ),
                   new Text(
                     "Incorrect: " + _incorrect.toString()
@@ -131,6 +152,10 @@ class _MonthPracticeState extends State<MonthPracticePage> {
                     child: new Text("0")
                 )
               ]
+            ),
+            new Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: getAnswerRow()
             )
           ],
         )
@@ -138,18 +163,21 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     );
   }
 
-  void checkMonth(int value){
-    if(value == DayCalculator.getMonthValueByString(_month)){
+  void checkMonth(int answer){
+    int month = DayCalculator.getMonthValueByString(_month);
+    if(answer == month){
       _correct += 1;
     } else {
       _incorrect += 1;
     }
-    _count -= 1;
+    _count += 1;
+    answers.add(new MonthPracticeAnswer(month, answer));
+    if((_startCount - _count) == 0) {
+      Navigator.pop(context);
+      return;
+    }
     setState(() => {
       _month = _months[_random.nextInt(_months.length)]
     });
-    if(_count == 0) {
-      Navigator.pop(context);
-    }
   }
 }
