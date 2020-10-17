@@ -12,7 +12,7 @@ class Months {
   static final Month november = new Month("november", 10, 3);
   static final Month december = new Month("december", 11, 5);
 
-  static final List<Month> _list = List.unmodifiable([
+  static final List<Month> list = List.unmodifiable([
     january,
     february,
     march,
@@ -26,7 +26,18 @@ class Months {
     november,
     december
   ]);
-  static final Map<String, Month> _map = Map.unmodifiable({
+
+  static List<String> stringList = List.unmodifiable(
+    list.map((month) => month.string)
+  );
+  static List<int> indexList = List.unmodifiable(
+    list.map((month) => month.i)
+  );
+  static List<int> valueList = List.unmodifiable(
+      list.map((month) => month.value)
+  );
+
+  static final Map<String, Month> stringMap = Map.unmodifiable({
     january.string: january,
     february.string: february,
     march.string: march,
@@ -40,30 +51,15 @@ class Months {
     november.string: november,
     december.string: december
   });
+  static final Map<int, Month> intMap = Map.unmodifiable(
+      stringMap.map((string, month) => MapEntry(month.i, month))
+  );
 
-  static List<String> _stringList = List.unmodifiable(
-    _list.map((month) => month.string)
-  );
-  static List<int> _indexList = List.unmodifiable(
-    _list.map((month) => month.i)
-  );
-  static List<int> _valueList = List.unmodifiable(
-      _list.map((month) => month.value)
-  );
-  static List<Month> asList(){
-    return _list;
-  }
-  static List<String> asStringList(){
-    return _stringList;
-  }
-  static List<int> asIndexList(){
-    return _indexList;
-  }
-  static List<int> asValueList(){
-    return _valueList;
-  }
   static Month getFromString(String month){
-    return _map[month.toLowerCase()];
+    return stringMap[month.toLowerCase()];
+  }
+  static Month getFromInt(int month){
+    return intMap[month];
   }
 }
 
@@ -72,7 +68,7 @@ class Month {
   final int i;
   final int value;
   Month(this.string, this.i, this.value);
-  
+
   @override
   String toString() {
     return this.string;
