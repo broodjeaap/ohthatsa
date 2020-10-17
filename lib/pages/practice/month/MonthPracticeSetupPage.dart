@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
-import '../../../AppDrawer.dart';
+import 'package:ohthatsa/AppDrawer.dart';
 
 class MonthPracticeSetupPage extends StatefulWidget {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:numberpicker/numberpicker.dart';
-import 'file:///D:/dev/projects/ohthatsa/lib/util/DayCalculator.dart';
+import 'package:ohthatsa/util/DayCalculator.dart';
 
-import '../AppDrawer.dart';
+import 'package:ohthatsa/AppDrawer.dart';
 
 class YearsPage extends StatefulWidget  {
   @override

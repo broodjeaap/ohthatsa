@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../AppDrawer.dart';
+import 'package:ohthatsa/AppDrawer.dart';
 
 class MonthValuesPage extends StatelessWidget {
   final Map<String, int> monthValues = {

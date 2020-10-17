@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/MonthPracticeSetupPage.dart';
-import 'file:///D:/dev/projects/ohthatsa/lib/pages/YearsPage.dart';
+import 'package:ohthatsa/pages/practice/month/MonthPracticeSetupPage.dart';
+import 'package:ohthatsa/pages/YearsPage.dart';
 
-import 'pages/practice/month/MonthPracticePage.dart';
-import 'pages/MonthValuesPage.dart';
+import 'package:ohthatsa/pages/practice/month/MonthPracticePage.dart';
+import 'package:ohthatsa/pages/MonthValuesPage.dart';
 
 void main() {
   runApp(OhThatsA());
