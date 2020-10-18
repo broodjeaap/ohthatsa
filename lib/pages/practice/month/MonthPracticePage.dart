@@ -3,6 +3,7 @@ import 'package:ohthatsa/pages/practice/month/MonthPracticeSetup.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/util/Months.dart';
+import 'package:ohthatsa/util/Extensions.dart';
 import "dart:math";
 
 import 'MonthPracticeAnswer.dart';
@@ -64,7 +65,10 @@ class _MonthPracticeState extends State<MonthPracticePage> {
             },
             color: Colors.blue,
             textColor: Colors.white,
-            child: new Text(i.toString())
+            child: new Text(
+              i.toString(),
+              style: TextStyle(fontSize: 30)
+            )
         )
       );
     }
@@ -103,7 +107,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
                         )
                     ),
                     new Text(
-                        (_startCount - _count).toString() + " left",
+                        (_startCount - _count).toString() + " Left",
                         style: TextStyle(
                           fontSize: 20,
                         )
@@ -117,7 +121,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
                   ],
                 ),
                 new Text(
-                    _month.string,
+                    _month.string.capitalize(),
                     style: TextStyle(
                       fontSize: 30,
                     )
