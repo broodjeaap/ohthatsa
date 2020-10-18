@@ -52,7 +52,11 @@ class _MonthPracticeState extends State<MonthPracticePage> {
 
   Widget getButtons(){
     List<Widget> buttons = new List<Widget>();
-    for(int i in [1,2,3,4,5,6]){
+    for(int i in [1,2,3,4,5,6,-1,0,-1]){
+      if (i == -1){
+        buttons.add(Container());
+        continue;
+      }
       buttons.add(
         new FlatButton(
             onPressed: () {
@@ -64,17 +68,6 @@ class _MonthPracticeState extends State<MonthPracticePage> {
         )
       );
     }
-    buttons.add(Container());
-    buttons.add(new FlatButton(
-            onPressed: () {
-              checkMonth(0);
-            },
-            color: Colors.blue,
-            textColor: Colors.white,
-            child: new Text("0")
-        )
-    );
-    buttons.add(Container());
     return new GridView.count(
       primary: false,
       crossAxisCount: 3,
