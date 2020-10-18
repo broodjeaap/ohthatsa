@@ -31,7 +31,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       answerBoxes.add(
           new Expanded(
             child: new Container(
-              height: 10,
+              height: 50,
               color: c
             )
           )
@@ -41,7 +41,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       answerBoxes.add(
           new Expanded(
               child: new Container(
-                  height: 10,
+                  height: 50,
                   color: Colors.blue,
               )
           )
