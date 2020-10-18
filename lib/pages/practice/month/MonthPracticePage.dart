@@ -51,6 +51,71 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     return new Row(children: answerBoxes);
   }
 
+  Widget getQuestions(){
+    List<Widget> questions = List<Widget>();
+    if(answers.length >= 2){
+      MonthPracticeAnswer answer = answers[answers.length - 2];
+      questions.add(
+        new Opacity(
+          opacity: 0.3,
+          child: new Text(
+              "${answer.month.string.capitalize()}: ${answer.month.value}",
+            style: TextStyle(
+              fontSize: 10,
+              color: answer.answer == answer.month.value ? Colors.green : Colors.red
+            )
+          )
+        )
+      );
+    } else {
+      questions.add(
+          new Opacity(
+              opacity: 0.6,
+              child: new Text(
+                  "-",
+                  style: TextStyle(fontSize: 10)
+              )
+          )
+      );
+    }
+    if(answers.length >= 1){
+      MonthPracticeAnswer answer = answers[answers.length - 1];
+      questions.add(
+          new Opacity(
+              opacity: 0.6,
+              child: new Text(
+                  "${answer.month.string.capitalize()}: ${answer.month.value}",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: answer.answer == answer.month.value ? Colors.green : Colors.red
+                  )
+              )
+          )
+      );
+    } else {
+      questions.add(
+          new Opacity(
+              opacity: 0.6,
+              child: new Text(
+                  "-",
+                  style: TextStyle(fontSize: 15)
+              )
+          )
+      );
+    }
+    questions.add(
+        new Text(
+            _month.string.capitalize(),
+            style: TextStyle(
+              fontSize: 30,
+            )
+        )
+    );
+    return new Column(
+        children: questions
+    );
+  }
+
   Widget getButtons(){
     List<Widget> buttons = new List<Widget>();
     for(int i in [1,2,3,4,5,6,-1,0,-1]){
@@ -120,12 +185,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
                     )
                   ],
                 ),
-                new Text(
-                    _month.string.capitalize(),
-                    style: TextStyle(
-                      fontSize: 30,
-                    )
-                ),
+                getQuestions(),
                 getButtons(),
                 new Align(
                     alignment: FractionalOffset.bottomCenter,
