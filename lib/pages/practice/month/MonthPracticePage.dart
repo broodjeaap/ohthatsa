@@ -18,28 +18,72 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   int _correct = 0;
   int _incorrect = 0;
   static final _random = new Random();
-  String _month = Months.stringList[_random.nextInt(Months.length)];
+  Month _month = Months.getFromInt(_random.nextInt(Months.length));
   List<MonthPracticeAnswer> answers = new List<MonthPracticeAnswer>();
 
   Widget getAnswerRow(){
     List<Widget> answerBoxes = new List<Widget>();
-    double screenWidth = MediaQuery.of(context).size.width;
     for(MonthPracticeAnswer answer in answers){
       Color c = Colors.green;
-      if(answer.month != answer.answer){
+      if(answer.month.value != answer.answer){
         c = Colors.red;
       }
       answerBoxes.add(
-          new SizedBox(
-              width: screenWidth / _startCount,
-              height: 100,
-              child: new DecoratedBox(
-                  decoration: BoxDecoration(color: c)
+          new Expanded(
+            child: new Container(
+              height: 10,
+              color: c
+            )
+          )
+      );
+    }
+    for(int i in Iterable.generate(_startCount - _count)) {
+      answerBoxes.add(
+          new Expanded(
+              child: new Container(
+                  height: 10,
+                  color: Colors.blue,
               )
           )
       );
     }
     return new Row(children: answerBoxes);
+  }
+
+  Widget getButtons(){
+    List<Widget> buttons = new List<Widget>();
+    for(int i in [1,2,3,4,5,6]){
+      buttons.add(
+        new FlatButton(
+            onPressed: () {
+              checkMonth(i);
+            },
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: new Text(i.toString())
+        )
+      );
+    }
+    buttons.add(Container());
+    buttons.add(new FlatButton(
+            onPressed: () {
+              checkMonth(0);
+            },
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: new Text("0")
+        )
+    );
+    buttons.add(Container());
+    return new GridView.count(
+      primary: false,
+      crossAxisCount: 3,
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      mainAxisSpacing: 10,
+      crossAxisSpacing: 10,
+      shrinkWrap: true,
+      children: buttons
+    );
   }
 
   @override
@@ -52,119 +96,65 @@ class _MonthPracticeState extends State<MonthPracticePage> {
         title: Text("Practicing months"),
       ),
       body: Center(
-        child: new Column(
-          children: <Widget>[
-            new Container(
-              padding: EdgeInsets.all(20),
-              child: new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  new Text(
-                      "Correct: " + _correct.toString()
-                  ),
-                  new Text(
-                      (_startCount - _count).toString() + " left"
-                  ),
-                  new Text(
-                    "Incorrect: " + _incorrect.toString()
-                  )
-                ],
-              )
-            ),
-            new Text(
-                _month
-            ),
-            new GridView.count(
-              primary: false,
-              crossAxisCount: 3,
-              padding: EdgeInsets.all(50),
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              shrinkWrap: true,
+        child: new Container(
+          padding: EdgeInsets.all(20),
+          child: new Column(
               children: <Widget>[
-                new FlatButton(
-                    onPressed: () {
-                      checkMonth(1);
-                    },
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    child: new Text("1")
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Text(
+                        "Correct: " + _correct.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                        )
+                    ),
+                    new Text(
+                        (_startCount - _count).toString() + " left",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )
+                    ),
+                    new Text(
+                        "Incorrect: " + _incorrect.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                        )
+                    )
+                  ],
                 ),
-                new FlatButton(
-                    onPressed: () {
-                      checkMonth(2);
-                    },
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    child: new Text("2")
+                new Text(
+                    _month.string,
+                    style: TextStyle(
+                      fontSize: 30,
+                    )
                 ),
-                new FlatButton(
-                    onPressed: () {
-                      checkMonth(3);
-                    },
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    child: new Text("3")
-                ),
-                new FlatButton(
-                    onPressed: () {
-                      checkMonth(4);
-                    },
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    child: new Text("4")
-                ),
-                new FlatButton(
-                    onPressed: () {
-                      checkMonth(5);
-                    },
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    child: new Text("5")
-                ),
-                new FlatButton(
-                    onPressed: () {
-                      checkMonth(6);
-                    },
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    child: new Text("6")
-                ),
-                new FlatButton(
-                    onPressed: () {
-                      checkMonth(0);
-                    },
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    child: new Text("0")
+                getButtons(),
+                new Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: getAnswerRow()
                 )
               ]
-            ),
-            new Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: getAnswerRow()
-            )
-          ],
+          )
         )
       )
     );
   }
 
   void checkMonth(int answer){
-    int month = DayCalculator.getMonthValueByString(_month);
-    if(answer == month){
+    if(answer == _month.value){
       _correct += 1;
     } else {
       _incorrect += 1;
     }
     _count += 1;
-    answers.add(new MonthPracticeAnswer(month, answer));
+    answers.add(new MonthPracticeAnswer(_month, answer));
     if((_startCount - _count) == 0) {
       Navigator.pop(context);
       return;
     }
     setState(() => {
-      _month = Months.stringList[_random.nextInt(Months.length)]
+      _month = Months.getFromInt(_random.nextInt(Months.length))
     });
   }
 }
