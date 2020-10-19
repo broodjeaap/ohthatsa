@@ -18,6 +18,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   int _count = 0;
   int _correct = 0;
   int _incorrect = 0;
+  bool _showCorrect = true;
   static final _random = new Random();
   Month _month = Months.getFromInt(_random.nextInt(Months.length));
   List<MonthPracticeAnswer> answers = new List<MonthPracticeAnswer>();
@@ -55,11 +56,15 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     List<Widget> questions = List<Widget>();
     if(answers.length >= 2){
       MonthPracticeAnswer answer = answers[answers.length - 2];
+      StringBuffer tmp = StringBuffer("${answer.month.string.capitalize()}");
+      if (_showCorrect){
+        tmp.write(": ${answer.month.value}");
+      }
       questions.add(
         new Opacity(
           opacity: 0.3,
           child: new Text(
-              "${answer.month.string.capitalize()}: ${answer.month.value}",
+              tmp.toString(),
             style: TextStyle(
               fontSize: 10,
               color: answer.answer == answer.month.value ? Colors.green : Colors.red
@@ -80,11 +85,15 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     }
     if(answers.length >= 1){
       MonthPracticeAnswer answer = answers[answers.length - 1];
+      StringBuffer tmp = StringBuffer("${answer.month.string.capitalize()}");
+      if (_showCorrect){
+        tmp.write(": ${answer.month.value}");
+      }
       questions.add(
           new Opacity(
               opacity: 0.6,
               child: new Text(
-                  "${answer.month.string.capitalize()}: ${answer.month.value}",
+                  tmp.toString(),
                   style: TextStyle(
                     fontSize: 15,
                     color: answer.answer == answer.month.value ? Colors.green : Colors.red
@@ -152,6 +161,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   Widget build(BuildContext context) {
     MonthPracticeSetup setup = ModalRoute.of(context).settings.arguments;
     _startCount = setup.count;
+    _showCorrect = setup.showCorrect;
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(

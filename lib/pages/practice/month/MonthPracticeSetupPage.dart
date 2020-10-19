@@ -10,6 +10,7 @@ class MonthPracticeSetupPage extends StatefulWidget {
 
 class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
   int _count = 12;
+  bool _showCorrect = true;
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -33,12 +34,23 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
                   onChanged: (newNumber) =>
                       setState(() => _count = newNumber),
               ),
+              new SizedBox(height: 30),
+              new CheckboxListTile(
+                title: new Text("Show correct Answer"),
+                value: _showCorrect,
+                onChanged: (value) {
+                  setState(() {
+                    _showCorrect = !_showCorrect;
+                  });
+                }
+              ),
+              new SizedBox(height: 30),
               new FlatButton(
                 onPressed: () {
                   Navigator.pushNamed(
                       context,
                       '/practice/month/practice',
-                    arguments: MonthPracticeSetup(_count)
+                    arguments: MonthPracticeSetup(_count, _showCorrect)
                   );
                 },
                 child: new Text("Start!"),
