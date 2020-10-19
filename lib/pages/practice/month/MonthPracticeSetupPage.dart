@@ -9,7 +9,7 @@ class MonthPracticeSetupPage extends StatefulWidget {
 }
 
 class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
-  int _count = 5;
+  int _count = 12;
   @override
   Widget build(BuildContext context){
     return Scaffold(
