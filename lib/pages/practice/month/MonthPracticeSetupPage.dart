@@ -29,7 +29,7 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
               new NumberPicker.integer(
                   initialValue: _count,
                   minValue: 1,
-                  maxValue: 1000000,
+                  maxValue: 500,
                   onChanged: (newNumber) =>
                       setState(() => _count = newNumber),
               ),
