@@ -18,30 +18,36 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
         title: Text("Practice Months"),
       ),
       body: Center(
-        child: new Column(
-          children: <Widget>[
-            new Text("How many times would you like to practice?"),
-            new NumberPicker.integer(
-                initialValue: _count,
-                minValue: 1,
-                maxValue: 1000000,
-                onChanged: (newNumber) =>
-                    setState(() => _count = newNumber),
-            ),
-            new FlatButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                    context,
-                    '/practice/month/practice',
-                  arguments: MonthPracticeSetup(_count)
-                );
-              },
-              child: new Text("Start!"),
-              color: Colors.blue,
-              textColor: Colors.white,
-              padding: EdgeInsets.all(8.0)
-            )
-          ]
+        child: new Container(
+          padding: EdgeInsets.all(20),
+          child: new Column(
+            children: <Widget>[
+              new Text(
+                "How many rounds?",
+                style: TextStyle(fontSize: 30),
+              ),
+              new NumberPicker.integer(
+                  initialValue: _count,
+                  minValue: 1,
+                  maxValue: 1000000,
+                  onChanged: (newNumber) =>
+                      setState(() => _count = newNumber),
+              ),
+              new FlatButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context,
+                      '/practice/month/practice',
+                    arguments: MonthPracticeSetup(_count)
+                  );
+                },
+                child: new Text("Start!"),
+                color: Colors.blue,
+                textColor: Colors.white,
+                padding: EdgeInsets.all(8.0)
+              )
+            ]
+          )
         )
       )
     );
