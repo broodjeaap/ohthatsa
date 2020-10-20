@@ -19,24 +19,24 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
         title: Text("Practice Months"),
       ),
       body: Center(
-        child: new Container(
+        child: Container(
           padding: EdgeInsets.all(20),
-          child: new Column(
+          child: Column(
             children: <Widget>[
-              new Text(
+              Text(
                 "How many rounds?",
                 style: TextStyle(fontSize: 30),
               ),
-              new NumberPicker.integer(
+              NumberPicker.integer(
                   initialValue: _count,
                   minValue: 1,
                   maxValue: 500,
                   onChanged: (newNumber) =>
                       setState(() => _count = newNumber),
               ),
-              new SizedBox(height: 30),
-              new CheckboxListTile(
-                title: new Text("Show correct Answer"),
+              SizedBox(height: 30),
+              CheckboxListTile(
+                title: Text("Show correct Answer"),
                 value: _showCorrect,
                 onChanged: (value) {
                   setState(() {
@@ -44,8 +44,8 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
                   });
                 }
               ),
-              new SizedBox(height: 30),
-              new FlatButton(
+              SizedBox(height: 30),
+              FlatButton(
                 onPressed: () {
                   Navigator.pushNamed(
                       context,
@@ -53,7 +53,7 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
                     arguments: MonthPracticeSetup(_count, _showCorrect)
                   );
                 },
-                child: new Text("Start!"),
+                child: Text("Start!"),
                 color: Colors.blue,
                 textColor: Colors.white,
                 padding: EdgeInsets.all(8.0)

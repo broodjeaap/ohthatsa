@@ -19,20 +19,20 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   int _correct = 0;
   int _incorrect = 0;
   bool _showCorrect = true;
-  static final _random = new Random();
+  static final _random = Random();
   Month _month = Months.getFromInt(_random.nextInt(Months.length));
-  List<MonthPracticeAnswer> answers = new List<MonthPracticeAnswer>();
+  List<MonthPracticeAnswer> answers = List<MonthPracticeAnswer>();
 
   Widget getAnswerRow(){
-    List<Widget> answerBoxes = new List<Widget>();
+    List<Widget> answerBoxes = List<Widget>();
     for(MonthPracticeAnswer answer in answers){
       Color c = Colors.green;
       if(answer.month.value != answer.answer){
         c = Colors.red;
       }
       answerBoxes.add(
-          new Expanded(
-            child: new Container(
+          Expanded(
+            child: Container(
               height: 50,
               color: c
             )
@@ -41,15 +41,15 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     }
     for(int i in Iterable.generate(_startCount - _count)) {
       answerBoxes.add(
-          new Expanded(
-              child: new Container(
+          Expanded(
+              child: Container(
                   height: 50,
                   color: Colors.blue,
               )
           )
       );
     }
-    return new Row(children: answerBoxes);
+    return Row(children: answerBoxes);
   }
 
   Widget getQuestions(){
@@ -61,9 +61,9 @@ class _MonthPracticeState extends State<MonthPracticePage> {
         tmp.write(": ${answer.month.value}");
       }
       questions.add(
-        new Opacity(
+        Opacity(
           opacity: 0.3,
-          child: new Text(
+          child: Text(
               tmp.toString(),
             style: TextStyle(
               fontSize: 10,
@@ -74,9 +74,9 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       );
     } else {
       questions.add(
-          new Opacity(
+          Opacity(
               opacity: 0.6,
-              child: new Text(
+              child: Text(
                   "-",
                   style: TextStyle(fontSize: 10)
               )
@@ -90,9 +90,9 @@ class _MonthPracticeState extends State<MonthPracticePage> {
         tmp.write(": ${answer.month.value}");
       }
       questions.add(
-          new Opacity(
+          Opacity(
               opacity: 0.6,
-              child: new Text(
+              child: Text(
                   tmp.toString(),
                   style: TextStyle(
                     fontSize: 15,
@@ -103,9 +103,9 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       );
     } else {
       questions.add(
-          new Opacity(
+          Opacity(
               opacity: 0.6,
-              child: new Text(
+              child: Text(
                   "-",
                   style: TextStyle(fontSize: 15)
               )
@@ -113,40 +113,40 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       );
     }
     questions.add(
-        new Text(
+        Text(
             _month.string.capitalize(),
             style: TextStyle(
               fontSize: 30,
             )
         )
     );
-    return new Column(
+    return Column(
         children: questions
     );
   }
 
   Widget getButtons(){
-    List<Widget> buttons = new List<Widget>();
+    List<Widget> buttons = List<Widget>();
     for(int i in [1,2,3,4,5,6,-1,0,-1]){
       if (i == -1){
         buttons.add(Container());
         continue;
       }
       buttons.add(
-        new FlatButton(
+        FlatButton(
             onPressed: () {
               checkMonth(i);
             },
             color: Colors.blue,
             textColor: Colors.white,
-            child: new Text(
+            child: Text(
               i.toString(),
               style: TextStyle(fontSize: 30)
             )
         )
       );
     }
-    return new GridView.count(
+    return GridView.count(
       primary: false,
       crossAxisCount: 3,
       padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -168,26 +168,26 @@ class _MonthPracticeState extends State<MonthPracticePage> {
         title: Text("Practicing months"),
       ),
       body: Center(
-        child: new Container(
+        child: Container(
           padding: EdgeInsets.all(20),
-          child: new Column(
+          child: Column(
               children: <Widget>[
-                new Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    new Text(
+                    Text(
                         "Correct: " + _correct.toString(),
                         style: TextStyle(
                           fontSize: 20,
                         )
                     ),
-                    new Text(
+                    Text(
                         (_startCount - _count).toString() + " Left",
                         style: TextStyle(
                           fontSize: 20,
                         )
                     ),
-                    new Text(
+                    Text(
                         "Incorrect: " + _incorrect.toString(),
                         style: TextStyle(
                           fontSize: 20,
@@ -197,7 +197,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
                 ),
                 getQuestions(),
                 getButtons(),
-                new Align(
+                Align(
                     alignment: FractionalOffset.bottomCenter,
                     child: getAnswerRow()
                 )
@@ -215,7 +215,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       _incorrect += 1;
     }
     _count += 1;
-    answers.add(new MonthPracticeAnswer(_month, answer));
+    answers.add(MonthPracticeAnswer(_month, answer));
     if((_startCount - _count) == 0) {
       Navigator.pop(context);
       return;

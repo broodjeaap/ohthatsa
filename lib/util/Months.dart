@@ -1,16 +1,16 @@
 class Months {
-  static final Month january = new Month("january", 0, 0);
-  static final Month february = new Month("february", 1, 3);
-  static final Month march = new Month("march", 2, 3);
-  static final Month april = new Month("april", 3, 6);
-  static final Month may = new Month("may", 4, 1);
-  static final Month june = new Month("june", 5, 4);
-  static final Month july = new Month("july", 6, 6);
-  static final Month august = new Month("august", 7, 2);
-  static final Month september = new Month("september", 8, 5);
-  static final Month october = new Month("october", 9, 0);
-  static final Month november = new Month("november", 10, 3);
-  static final Month december = new Month("december", 11, 5);
+  static final Month january = Month("january", 0, 0);
+  static final Month february = Month("february", 1, 3);
+  static final Month march = Month("march", 2, 3);
+  static final Month april = Month("april", 3, 6);
+  static final Month may = Month("may", 4, 1);
+  static final Month june = Month("june", 5, 4);
+  static final Month july = Month("july", 6, 6);
+  static final Month august = Month("august", 7, 2);
+  static final Month september = Month("september", 8, 5);
+  static final Month october = Month("october", 9, 0);
+  static final Month november = Month("november", 10, 3);
+  static final Month december = Month("december", 11, 5);
 
   static final int length = 12;
 

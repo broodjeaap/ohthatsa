@@ -11,7 +11,7 @@ class YearsPage extends StatefulWidget  {
 }
 
 class _YearsPageState extends State<YearsPage> {
-  int _year = new DateTime.now().year;
+  int _year = DateTime.now().year;
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -20,18 +20,18 @@ class _YearsPageState extends State<YearsPage> {
           title: Text("Years"),
         ),
         body: Center(
-            child: new Column(
+            child: Column(
               children: <Widget>[
-                new NumberPicker.integer(
+                NumberPicker.integer(
                   initialValue: _year, // TODO set to current year
                   minValue: 1800,
                   maxValue: 2399,
                   onChanged: (newYear) =>
                     setState(() => _year = newYear),
                 ),
-                new Text("You picked the year: $_year"),
-                new Text("The century code is: " + DayCalculator.getCenturyValue(_year).toString()),
-                new Text("Is this a leap year: " + DayCalculator.isLeapYear(_year).toString()),
+                Text("You picked the year: $_year"),
+                Text("The century code is: " + DayCalculator.getCenturyValue(_year).toString()),
+                Text("Is this a leap year: " + DayCalculator.isLeapYear(_year).toString()),
               ]
             )
         )
