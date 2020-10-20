@@ -318,4 +318,15 @@ void main() {
       });
     });
   });
+  group("Months", () {
+    test("toString", () {
+      expect("${Months.january}" == "january", equals(true));
+    });
+    test("==", () {
+      expect(Months.january == Month("january", 0, 0), equals(true));
+    });
+    test("!=", () {
+      expect(Months.january == Month("february", 0, 0), equals(false));
+    });
+  });
 }
