@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:ohthatsa/AppDrawer.dart';
-import 'package:ohthatsa/pages/practice/month/MonthPracticeSetup.dart';
+import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/PracticeSetup.dart';
 
-class MonthPracticeSetupPage extends StatefulWidget {
+class PracticeSetupPage extends StatefulWidget {
   @override
-  _MonthPracticeSetupState createState() => _MonthPracticeSetupState();
+  _PracticeSetupState createState() => _PracticeSetupState();
 }
 
-class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
+class _PracticeSetupState extends State<PracticeSetupPage> {
   int _count = 12;
   bool _showCorrect = true;
   @override
@@ -50,7 +50,7 @@ class _MonthPracticeSetupState extends State<MonthPracticeSetupPage> {
                   Navigator.pushNamed(
                       context,
                       '/practice/month/practice',
-                    arguments: MonthPracticeSetup(_count, _showCorrect)
+                    arguments: PracticeSetup(_count, _showCorrect)
                   );
                 },
                 child: Text("Start!"),

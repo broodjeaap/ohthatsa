@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ohthatsa/pages/practice/month/MonthPracticeSetup.dart';
+import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/util/Months.dart';
@@ -159,7 +159,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
 
   @override
   Widget build(BuildContext context) {
-    MonthPracticeSetup setup = ModalRoute.of(context).settings.arguments;
+    PracticeSetup setup = ModalRoute.of(context).settings.arguments;
     _startCount = setup.count;
     _showCorrect = setup.showCorrect;
     return Scaffold(
