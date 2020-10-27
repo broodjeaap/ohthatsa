@@ -157,48 +157,45 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     );
   }
 
-  Future _finishedPractice() {
-    showDialog(
-      context: context,
-      child: SimpleDialog(
-        title: Text("Practice Complete!"),
-        contentPadding: EdgeInsets.all(50),
-        children: <Widget>[
-          Row(
+  SimpleDialog finishedPracticeDialog() {
+    return SimpleDialog(
+      title: Text("Practice Complete!"),
+      contentPadding: EdgeInsets.all(50),
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text("Rounds of Practice:"),
+            Text(_startCount.toString())
+          ]
+        ),
+        Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("Rounds of Practice:"),
-              Text(_startCount.toString())
+              Text("Correct:"),
+              Text(_correct.toString()),
             ]
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text("Correct:"),
-                Text(_correct.toString()),
-              ]
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text("Incorrect:"),
-                Text(_incorrect.toString()),
-              ]
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  (_correct / _startCount * 100).round().toString() + "%",
-                  style: TextStyle(
-                    color: (_correct / _startCount * 100) > 70 ? Colors.green : Colors.red,
-                    fontSize: 30,
-                  )
-                ),
-              ]
-          ),
-        ]
-      )
+        ),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text("Incorrect:"),
+              Text(_incorrect.toString()),
+            ]
+        ),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                (_correct / _startCount * 100).round().toString() + "%",
+                style: TextStyle(
+                  color: (_correct / _startCount * 100) > 70 ? Colors.green : Colors.red,
+                  fontSize: 30,
+                )
+              ),
+            ]
+        ),
+      ]
     );
   }
 
@@ -261,13 +258,17 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     }
     _count += 1;
     answers.add(MonthPracticeAnswer(_month, answer));
-    if((_startCount - _count) == 0) {
-      _finishedPractice();
-      Navigator.pop(context);
-      return;
-    }
     setState(() => {
       _month = Months.getFromInt(_random.nextInt(Months.length))
     });
+    if((_startCount - _count) == 0) {
+      showDialog(
+        context: context,
+        child: finishedPracticeDialog()
+      ).then((val) {
+        Navigator.pop(context);
+      });
+      return;
+    }
   }
 }
