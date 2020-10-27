@@ -16,27 +16,34 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
-        title: Text("Practice Months"),
+        title: Text("Practice"),
       ),
       body: Center(
         child: Container(
           padding: EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              Text(
-                "How many rounds?",
-                style: TextStyle(fontSize: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "How many rounds",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  NumberPicker.integer(
+                    initialValue: _count,
+                    minValue: 1,
+                    maxValue: 500,
+                    onChanged: (newNumber) =>
+                        setState(() => _count = newNumber),
+                  )
+                ]
               ),
-              NumberPicker.integer(
-                  initialValue: _count,
-                  minValue: 1,
-                  maxValue: 500,
-                  onChanged: (newNumber) =>
-                      setState(() => _count = newNumber),
-              ),
-              SizedBox(height: 30),
               CheckboxListTile(
-                title: Text("Show correct Answer"),
+                title: Text(
+                  "Show correct Answer",
+                  style: TextStyle(fontSize: 20)
+                ),
                 value: _showCorrect,
                 onChanged: (value) {
                   setState(() {
@@ -44,20 +51,82 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                   });
                 }
               ),
-              SizedBox(height: 30),
-              FlatButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context,
-                      '/practice/month/practice',
-                    arguments: PracticeSetup(_count, _showCorrect)
-                  );
-                },
-                child: Text("Start!"),
-                color: Colors.blue,
-                textColor: Colors.white,
-                padding: EdgeInsets.all(8.0)
-              )
+              Spacer(),
+              Table(
+                border: TableBorder(
+                  //horizontalInside: BorderSide(),
+                  //verticalInside: BorderSide()
+                ),
+                children: <TableRow>[
+                  TableRow(
+                    children: <Widget>[
+                      // Header
+                      Text(""),
+                      Text("7d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("30d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("All", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                    ]
+                  ),
+                  TableRow(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text("Month"),
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context,
+                              '/practice/month/practice',
+                              arguments: PracticeSetup(_count, _showCorrect)
+                          );
+                        },
+                      ),
+                      Text("85%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                    ]
+                  ),
+                  TableRow(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text("Year"),
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        onPressed: () {},
+                      ),
+                      Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                    ]
+                  ),
+                  TableRow(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text("Leap"),
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        onPressed: () {},
+                      ),
+                      Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                    ]
+                  ),
+                  TableRow(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text("All"),
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        onPressed: () {},
+                      ),
+                      Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                    ]
+                  ),
+                ]
+              ),
             ]
           )
         )
