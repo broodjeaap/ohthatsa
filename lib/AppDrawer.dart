@@ -29,7 +29,7 @@ class AppDrawer extends StatelessWidget {
               title: Text("Practice Months"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, "/practice/month/setup");
+                Navigator.pushNamed(context, "/practice/setup");
               }
           ),
         ],
