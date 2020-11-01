@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
-import 'package:ohthatsa/pages/practice/month/MonthPracticeGenerator.dart';
+import 'package:ohthatsa/pages/practice/PracticeThing.dart';
+import 'package:ohthatsa/pages/practice/PracticeThingMonth.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/util/Extensions.dart';
 
@@ -18,117 +19,27 @@ class MonthPracticePage extends StatefulWidget {
 class _MonthPracticeState extends State<MonthPracticePage> {
   int _startCount = 0;
   bool _showCorrect = true;
+  PracticeThing practiceThing;
 
   int _count = 0;
   int _correct = 0;
   int _incorrect = 0;
-  static final practiceGenerator = MonthPracticeGenerator();
-  List<MonthPracticeAnswer> answers = List<MonthPracticeAnswer>();
 
   _MonthPracticeState(PracticeSetup practiceSetup){
-    _startCount = practiceSetup.count;
-    _showCorrect = practiceSetup.showCorrect;
-  }
-  Widget getAnswerRow(){
-    List<Widget> answerBoxes = List<Widget>();
-    for(MonthPracticeAnswer answer in answers){
-      Color c = Colors.green;
-      if(answer.month.value != answer.answer){
-        c = Colors.red;
-      }
-      answerBoxes.add(
-          Expanded(
-            child: Container(
-              height: 50,
-              color: c
-            )
-          )
-      );
-    }
-    for(int i in Iterable.generate(_startCount - _count)) {
-      answerBoxes.add(
-          Expanded(
-              child: Container(
-                  height: 50,
-                  color: Colors.blue,
-              )
-          )
-      );
-    }
-    return Row(children: answerBoxes);
+    this._startCount = practiceSetup.count;
+    this._showCorrect = practiceSetup.showCorrect;
+    this.practiceThing = PracticeThingMonth();
   }
 
-  Widget getQuestions(){
-    List<Widget> questions = List<Widget>();
-    if(answers.length >= 2){
-      MonthPracticeAnswer answer = answers[answers.length - 2];
-      StringBuffer tmp = StringBuffer("${answer.month.string.capitalize()}");
-      if (_showCorrect){
-        tmp.write(": ${answer.month.value}");
-      }
-      questions.add(
-        Opacity(
-          opacity: 0.3,
-          child: Text(
-              tmp.toString(),
-            style: TextStyle(
-              fontSize: 10,
-              color: answer.answer == answer.month.value ? Colors.green : Colors.red
-            )
-          )
-        )
-      );
-    } else {
-      questions.add(
-          Opacity(
-              opacity: 0.6,
-              child: Text(
-                  "-",
-                  style: TextStyle(fontSize: 10)
-              )
-          )
-      );
-    }
-    if(answers.length >= 1){
-      MonthPracticeAnswer answer = answers[answers.length - 1];
-      StringBuffer tmp = StringBuffer("${answer.month.string.capitalize()}");
-      if (_showCorrect){
-        tmp.write(": ${answer.month.value}");
-      }
-      questions.add(
-          Opacity(
-              opacity: 0.6,
-              child: Text(
-                  tmp.toString(),
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: answer.answer == answer.month.value ? Colors.green : Colors.red
-                  )
-              )
-          )
-      );
-    } else {
-      questions.add(
-          Opacity(
-              opacity: 0.6,
-              child: Text(
-                  "-",
-                  style: TextStyle(fontSize: 15)
-              )
-          )
-      );
-    }
-    questions.add(
-        Text(
-            practiceGenerator.toString(),
-            style: TextStyle(
-              fontSize: 30,
-            )
-        )
-    );
-    return Column(
-        children: questions
-    );
+  Widget getAnswerRow(){
+    List<Widget> answerBoxes = List<Widget>();
+    answerBoxes.addAll(practiceThing.getBoolAnswers().map(
+        (isCorrect) => Expanded(child: Container(height: 50, color: isCorrect ? Colors.green : Colors.red))
+    ));
+    answerBoxes.addAll(Iterable.generate(_startCount - _count).map(
+        (_) => Expanded(child: Container(height: 50, color: Colors.blue))
+    ));
+    return Row(children: answerBoxes);
   }
 
   Widget getButtons(){
@@ -240,7 +151,19 @@ class _MonthPracticeState extends State<MonthPracticePage> {
                     )
                   ],
                 ),
-                getQuestions(),
+                Column(
+                  children: <Widget>[
+                    Opacity(
+                        opacity: 0.3,
+                        child: practiceThing.getSecondLastAnswerText(_showCorrect)
+                    ),
+                    Opacity(
+                        opacity: 0.6,
+                        child: practiceThing.getLastAnswerText(_showCorrect)
+                    ),
+                    practiceThing.getCurrentQuestionText()
+                  ]
+                ),
                 getButtons(),
                 Align(
                     alignment: FractionalOffset.bottomCenter,
@@ -254,15 +177,14 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   }
 
   void checkMonth(int answer){
-    if(practiceGenerator.check(answer)){
+    if(practiceThing.answer(answer)){
       _correct += 1;
     } else {
       _incorrect += 1;
     }
     _count += 1;
-    answers.add(MonthPracticeAnswer(practiceGenerator.current, answer));
     setState(() => {
-      practiceGenerator.next()
+      practiceThing.next()
     });
     if((_startCount - _count) == 0) {
       showDialog(
