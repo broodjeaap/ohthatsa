@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:ohthatsa/pages/practice/PracticeGenerator.dart';
+import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/month/MonthPracticeGenerator.dart';
-import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/PracticeSetup.dart';
-import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/AppDrawer.dart';
-import 'package:ohthatsa/util/Months.dart';
 import 'package:ohthatsa/util/Extensions.dart';
-import "dart:math";
 
 import 'MonthPracticeAnswer.dart';
 
 class MonthPracticePage extends StatefulWidget {
+  final PracticeSetup practiceSetup;
+  MonthPracticePage(
+      this.practiceSetup
+  );
   @override
-  _MonthPracticeState createState() => _MonthPracticeState();
+  _MonthPracticeState createState() => _MonthPracticeState(practiceSetup);
 }
 
 class _MonthPracticeState extends State<MonthPracticePage> {
   int _startCount = 0;
+  bool _showCorrect = true;
+
   int _count = 0;
   int _correct = 0;
   int _incorrect = 0;
-  bool _showCorrect = true;
   static final practiceGenerator = MonthPracticeGenerator();
   List<MonthPracticeAnswer> answers = List<MonthPracticeAnswer>();
 
+  _MonthPracticeState(PracticeSetup practiceSetup){
+    _startCount = practiceSetup.count;
+    _showCorrect = practiceSetup.showCorrect;
+  }
   Widget getAnswerRow(){
     List<Widget> answerBoxes = List<Widget>();
     for(MonthPracticeAnswer answer in answers){
@@ -202,9 +207,6 @@ class _MonthPracticeState extends State<MonthPracticePage> {
 
   @override
   Widget build(BuildContext context) {
-    PracticeSetup setup = ModalRoute.of(context).settings.arguments;
-    _startCount = setup.count;
-    _showCorrect = setup.showCorrect;
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
