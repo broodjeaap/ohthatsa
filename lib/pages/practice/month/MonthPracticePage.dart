@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ohthatsa/pages/practice/PracticeGenerator.dart';
+import 'package:ohthatsa/pages/practice/month/MonthPracticeGenerator.dart';
 import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/AppDrawer.dart';
@@ -19,8 +21,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   int _correct = 0;
   int _incorrect = 0;
   bool _showCorrect = true;
-  static final _random = Random();
-  Month _month = Months.getFromInt(_random.nextInt(Months.length));
+  static final practiceGenerator = MonthPracticeGenerator();
   List<MonthPracticeAnswer> answers = List<MonthPracticeAnswer>();
 
   Widget getAnswerRow(){
@@ -114,7 +115,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     }
     questions.add(
         Text(
-            _month.string.capitalize(),
+            practiceGenerator.toString(),
             style: TextStyle(
               fontSize: 30,
             )
@@ -251,15 +252,15 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   }
 
   void checkMonth(int answer){
-    if(answer == _month.value){
+    if(practiceGenerator.check(answer)){
       _correct += 1;
     } else {
       _incorrect += 1;
     }
     _count += 1;
-    answers.add(MonthPracticeAnswer(_month, answer));
+    answers.add(MonthPracticeAnswer(practiceGenerator.current, answer));
     setState(() => {
-      _month = Months.getFromInt(_random.nextInt(Months.length))
+      practiceGenerator.next()
     });
     if((_startCount - _count) == 0) {
       showDialog(
