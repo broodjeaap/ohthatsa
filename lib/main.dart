@@ -3,7 +3,7 @@ import 'package:ohthatsa/pages/YearsPage.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 
 import 'package:ohthatsa/pages/practice/PracticeSetupPage.dart';
-import 'package:ohthatsa/pages/practice/month/MonthPracticePage.dart';
+import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/pages/MonthValuesPage.dart';
 
 void main() {
@@ -34,7 +34,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => PracticeSetupPage());
       }
       case "/practice/month/practice": {
-        return MaterialPageRoute(builder: (context) => MonthPracticePage(settings.arguments));
+        return MaterialPageRoute(builder: (context) => PracticePage(settings.arguments));
       }
       default: {
         return MaterialPageRoute(builder: (context) => YearsPage());

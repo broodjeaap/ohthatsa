@@ -28,6 +28,10 @@ class PracticeThingMonth extends PracticeThing {
     return answers.map((answer) => answer.month.value == answer.answer).toList();
   }
 
+  Text getAppBarTitleText(){
+    return Text("Practicing Months");
+  }
+
   Text getCurrentQuestionText(){
     return Text(
       current.toString(),

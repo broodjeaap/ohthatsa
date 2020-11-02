@@ -5,18 +5,18 @@ import 'package:ohthatsa/pages/practice/PracticeThingMonth.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/util/Extensions.dart';
 
-import 'MonthPracticeAnswer.dart';
+import 'month/MonthPracticeAnswer.dart';
 
-class MonthPracticePage extends StatefulWidget {
+class PracticePage extends StatefulWidget {
   final PracticeSetup practiceSetup;
-  MonthPracticePage(
+  PracticePage(
       this.practiceSetup
   );
   @override
-  _MonthPracticeState createState() => _MonthPracticeState(practiceSetup);
+  _PracticeState createState() => _PracticeState(practiceSetup);
 }
 
-class _MonthPracticeState extends State<MonthPracticePage> {
+class _PracticeState extends State<PracticePage> {
   int _startCount = 0;
   bool _showCorrect = true;
   PracticeThing practiceThing;
@@ -25,7 +25,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
   int _correct = 0;
   int _incorrect = 0;
 
-  _MonthPracticeState(PracticeSetup practiceSetup){
+  _PracticeState(PracticeSetup practiceSetup){
     this._startCount = practiceSetup.count;
     this._showCorrect = practiceSetup.showCorrect;
     this.practiceThing = PracticeThingMonth();
@@ -52,7 +52,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
       buttons.add(
         FlatButton(
             onPressed: () {
-              checkMonth(i);
+              checkAnswer(i);
             },
             color: Colors.blue,
             textColor: Colors.white,
@@ -121,7 +121,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
-        title: Text("Practicing months"),
+        title: practiceThing.getAppBarTitleText(),
       ),
       body: Center(
         child: Container(
@@ -176,7 +176,7 @@ class _MonthPracticeState extends State<MonthPracticePage> {
     );
   }
 
-  void checkMonth(int answer){
+  void checkAnswer(int answer){
     if(practiceThing.answer(answer)){
       _correct += 1;
     } else {
