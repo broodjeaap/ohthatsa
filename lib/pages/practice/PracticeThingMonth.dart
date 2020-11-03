@@ -3,12 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
-import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/PracticeAnswer.dart';
+import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
 import 'package:ohthatsa/util/Months.dart';
 
 class PracticeThingMonth extends PracticeThing {
-  final random = Random();
-  final List<PracticeAnswer> answers = new List<PracticeAnswer>();
+
   Month current;
   
   PracticeThingMonth(){
