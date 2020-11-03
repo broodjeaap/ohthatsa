@@ -107,23 +107,42 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                     ]
                   ),
                   TableRow(
-                    children: <Widget>[
-                      FlatButton(
-                        child: Text("Leap"),
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context,
-                              '/practice/practice',
-                              arguments: PracticeSetup(_count, _showCorrect, PracticeType.leap)
-                          );
-                        },
-                      ),
-                      Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
-                    ]
+                      children: <Widget>[
+                        FlatButton(
+                          child: Text("Leap"),
+                          color: Colors.blue,
+                          textColor: Colors.white,
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context,
+                                '/practice/practice',
+                                arguments: PracticeSetup(_count, _showCorrect, PracticeType.leap)
+                            );
+                          },
+                        ),
+                        Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                        Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                        Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                      ]
+                  ),
+                  TableRow(
+                      children: <Widget>[
+                        FlatButton(
+                          child: Text("Modulo 7"),
+                          color: Colors.blue,
+                          textColor: Colors.white,
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context,
+                                '/practice/practice',
+                                arguments: PracticeSetup(_count, _showCorrect, PracticeType.mod)
+                            );
+                          },
+                        ),
+                        Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                        Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                        Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                      ]
                   ),
                   TableRow(
                     children: <Widget>[
