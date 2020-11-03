@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeThing.dart';
+import 'package:ohthatsa/pages/practice/PracticeThingCentury.dart';
 import 'package:ohthatsa/pages/practice/PracticeThingMonth.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
@@ -32,6 +33,10 @@ class _PracticeState extends State<PracticePage> {
     switch(practiceSetup.practiceType){
       case (PracticeType.month): {
         this.practiceThing = PracticeThingMonth();
+        break;
+      }
+      case (PracticeType.century): {
+        this.practiceThing = PracticeThingCentury();
         break;
       }
       default: {

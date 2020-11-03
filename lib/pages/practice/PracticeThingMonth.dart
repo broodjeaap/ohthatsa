@@ -72,11 +72,11 @@ class PracticeThingMonth extends PracticeThing {
       }
     }
     return Text(
-        text,
-        style: TextStyle(
-            fontSize: 10,
-            color: color
-        )
+      text,
+      style: TextStyle(
+        fontSize: 10,
+        color: color
+      )
     );
   }
 }

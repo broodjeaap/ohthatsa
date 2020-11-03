@@ -90,10 +90,16 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                   TableRow(
                     children: <Widget>[
                       FlatButton(
-                        child: Text("Year"),
+                        child: Text("Century"),
                         color: Colors.blue,
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context,
+                              '/practice/practice',
+                              arguments: PracticeSetup(_count, _showCorrect, PracticeType.century)
+                          );
+                        },
                       ),
                       Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
                       Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
