@@ -3,9 +3,10 @@ import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/PracticeThingMonth.dart';
 import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/util/Extensions.dart';
 
-import 'month/MonthPracticeAnswer.dart';
+import 'PracticeAnswer.dart';
 
 class PracticePage extends StatefulWidget {
   final PracticeSetup practiceSetup;
@@ -28,7 +29,15 @@ class _PracticeState extends State<PracticePage> {
   _PracticeState(PracticeSetup practiceSetup){
     this._startCount = practiceSetup.count;
     this._showCorrect = practiceSetup.showCorrect;
-    this.practiceThing = PracticeThingMonth();
+    switch(practiceSetup.practiceType){
+      case (PracticeType.month): {
+        this.practiceThing = PracticeThingMonth();
+        break;
+      }
+      default: {
+        //
+      }
+    }
   }
 
   Widget getAnswerRow(){

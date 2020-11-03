@@ -2,12 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeThing.dart';
-import 'package:ohthatsa/pages/practice/month/MonthPracticeAnswer.dart';
+import 'package:ohthatsa/pages/practice/PracticeType.dart';
+import 'file:///D:/dev/projects/ohthatsa/lib/pages/practice/PracticeAnswer.dart';
 import 'package:ohthatsa/util/Months.dart';
 
 class PracticeThingMonth extends PracticeThing {
   final random = Random();
-  final List<MonthPracticeAnswer> answers = new List<MonthPracticeAnswer>();
+  final List<PracticeAnswer> answers = new List<PracticeAnswer>();
   Month current;
   
   PracticeThingMonth(){
@@ -15,7 +16,7 @@ class PracticeThingMonth extends PracticeThing {
   }
   @override
   bool answer(int answer) {
-    answers.add(MonthPracticeAnswer(current, answer));
+    answers.add(PracticeAnswer(current.i, answer, PracticeType.month));
     return current.value == answer;
   }
 
@@ -25,7 +26,7 @@ class PracticeThingMonth extends PracticeThing {
   }
 
   List<bool> getBoolAnswers(){
-    return answers.map((answer) => answer.month.value == answer.answer).toList();
+    return answers.map((answer) => Months.getFromInt(answer.question).value == answer.answer).toList();
   }
 
   Text getAppBarTitleText(){
@@ -46,8 +47,9 @@ class PracticeThingMonth extends PracticeThing {
     Color color = Colors.red;
     if(answers.length >= 1){
       final answer = answers[answers.length - 1];
-      text = answer.month.toString() + (showCorrect ? ": ${answer.month.value}" : "");
-      if(answer.month.value == answer.answer){
+      final month = Months.getFromInt(answer.question);
+      text = month.toString() + (showCorrect ? ": ${month.value}" : "");
+      if(month.value == answer.answer){
         color = Colors.green;
       }
     }
@@ -64,8 +66,9 @@ class PracticeThingMonth extends PracticeThing {
     Color color = Colors.red;
     if(answers.length >= 2){
       final answer = answers[answers.length - 2];
-      text = answer.month.toString() + (showCorrect ? ": ${answer.month.value}" : "");
-      if(answer.month.value == answer.answer){
+      final month = Months.getFromInt(answer.question);
+      text = month.toString() + (showCorrect ? ": ${month.value}" : "");
+      if(month.value == answer.answer){
         color = Colors.green;
       }
     }

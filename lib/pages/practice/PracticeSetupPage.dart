@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
+import 'package:ohthatsa/pages/practice/PracticeType.dart';
 
 class PracticeSetupPage extends StatefulWidget {
   @override
@@ -77,7 +78,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                           Navigator.pushNamed(
                               context,
                               '/practice/month/practice',
-                              arguments: PracticeSetup(_count, _showCorrect)
+                              arguments: PracticeSetup(_count, _showCorrect, PracticeType.month)
                           );
                         },
                       ),
