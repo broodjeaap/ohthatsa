@@ -77,7 +77,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                         onPressed: () {
                           Navigator.pushNamed(
                               context,
-                              '/practice/month/practice',
+                              '/practice/practice',
                               arguments: PracticeSetup(_count, _showCorrect, PracticeType.month)
                           );
                         },

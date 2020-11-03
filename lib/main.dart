@@ -33,7 +33,7 @@ class RouteGenerator {
       case "/practice/setup": {
         return MaterialPageRoute(builder: (context) => PracticeSetupPage());
       }
-      case "/practice/month/practice": {
+      case "/practice/practice": {
         return MaterialPageRoute(builder: (context) => PracticePage(settings.arguments));
       }
       default: {
