@@ -1,6 +1,6 @@
 enum PracticeType {
   month,
   century,
-  year,
+  leap,
   all
 }
