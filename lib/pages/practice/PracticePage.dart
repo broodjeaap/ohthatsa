@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/PracticeThingCentury.dart';
@@ -8,6 +9,7 @@ import 'package:ohthatsa/pages/practice/PracticeThingMonth.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/util/Extensions.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'PracticeAnswer.dart';
 
@@ -211,6 +213,7 @@ class _PracticeState extends State<PracticePage> {
       practiceThing.next()
     });
     if((_startCount - _count) == 0) {
+      PracticeDatabase.insertAnswers(practiceThing.answers);
       showDialog(
         context: context,
         child: finishedPracticeDialog()
