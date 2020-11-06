@@ -4,47 +4,50 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class PracticeDatabase {
-  Database _database;
-
-  static PracticeDatabase getDatabase() {
-    PracticeDatabase practiceDatabase = PracticeDatabase();
-    practiceDatabase.open();
-    return practiceDatabase;
-  }
-
-  _onCreate(Database database, int version) async {
+  static _onCreate(Database database, int version) async {
     String types = PracticeType.values.map((type) => "'${type.toString().split(".").last}'").join(", ");
+    await database.execute('''
+    CREATE TABLE PracticeSession (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      type TEXT CHECK( type IN ($types) ) NOT NULL
+    );
+    ''');
     await database.execute('''
     CREATE TABLE PracticeAnswer (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      sessionId INTEGER NOT NULL,
       question INTEGER NOT NULL,
       answer INTEGER NOT NULL,
-      type TEXT CHECK( type IN ($types) ) NOT NULL,
-      time DATETIME NOT NULL
+      time DATETIME NOT NULL,
+      
+      FOREIGN KEY(sessionId) REFERENCES PracticeSession(id)
     );
     ''');
   }
 
-  Future open() async{
+  static Future<Database> getDatabase() async {
     var databasesPath = await getDatabasesPath();
     final databaseName = "answers.db";
-    var path = join(databasesPath, databaseName);
-    this._database = await openDatabase(
-        path,
-        version: 1,
-        onCreate: _onCreate
+
+    return await openDatabase(
+      join(databasesPath, databaseName),
+      version: 1,
+      onCreate: _onCreate
     );
   }
 
-  Future insertAnswer(PracticeAnswer answer) async {
-    this._database.insert("PracticeAnswer", answer.toMap());
-  }
-
-  static insertAnswers(List<PracticeAnswer> answers) async {
-    var practiceDatabase = PracticeDatabase();
-    await practiceDatabase.open();
+  static insertAnswers(List<PracticeAnswer> answers, PracticeType practiceType) async {
+    var db = await getDatabase();
+    int sessionId = await db.insert("PracticeSession",
+        <String, dynamic>{
+          "type": practiceType.toString().split(".").last
+        }
+    );
+    var batch = db.batch();
     answers.forEach((answer) {
-      practiceDatabase.insertAnswer(answer);
+      answer.sessionId = sessionId;
+      batch.insert("PracticeAnswer", answer.toMap());
     });
+    await batch.commit();
   }
 }

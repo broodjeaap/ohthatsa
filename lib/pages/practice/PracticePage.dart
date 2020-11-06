@@ -25,6 +25,7 @@ class PracticePage extends StatefulWidget {
 class _PracticeState extends State<PracticePage> {
   int _startCount = 0;
   bool _showCorrect = true;
+  PracticeType practiceType;
   PracticeThing practiceThing;
 
   int _count = 0;
@@ -34,7 +35,8 @@ class _PracticeState extends State<PracticePage> {
   _PracticeState(PracticeSetup practiceSetup){
     this._startCount = practiceSetup.count;
     this._showCorrect = practiceSetup.showCorrect;
-    switch(practiceSetup.practiceType){
+    practiceType = practiceSetup.practiceType;
+    switch(practiceType){
       case (PracticeType.month): {
         this.practiceThing = PracticeThingMonth();
         break;
@@ -213,7 +215,7 @@ class _PracticeState extends State<PracticePage> {
       practiceThing.next()
     });
     if((_startCount - _count) == 0) {
-      PracticeDatabase.insertAnswers(practiceThing.answers);
+      PracticeDatabase.insertAnswers(practiceThing.answers, practiceType);
       showDialog(
         context: context,
         child: finishedPracticeDialog()

@@ -14,7 +14,7 @@ class PracticeThingLeap extends PracticeThing {
 
   @override
   bool answer(int answer) {
-    answers.add(PracticeAnswer(current, answer, PracticeType.month));
+    answers.add(PracticeAnswer(current, answer));
     final correctAnswer = DayCalculator.isLeapYear(current);
     return (answer != 0) == correctAnswer;
   }

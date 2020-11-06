@@ -15,7 +15,7 @@ class PracticeThingCentury extends PracticeThing {
 
   @override
   bool answer(int answer) {
-    answers.add(PracticeAnswer(current, answer, PracticeType.month));
+    answers.add(PracticeAnswer(current, answer));
     final correctAnswer = DayCalculator.getCenturyValue(current);
     return answer == correctAnswer;
   }

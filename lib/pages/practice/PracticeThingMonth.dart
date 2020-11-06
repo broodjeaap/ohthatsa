@@ -15,7 +15,7 @@ class PracticeThingMonth extends PracticeThing {
   }
   @override
   bool answer(int answer) {
-    answers.add(PracticeAnswer(current.i, answer, PracticeType.month));
+    answers.add(PracticeAnswer(current.i, answer));
     return current.value == answer;
   }
 

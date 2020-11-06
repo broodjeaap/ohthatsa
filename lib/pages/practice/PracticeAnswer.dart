@@ -6,10 +6,10 @@ import 'package:ohthatsa/util/Months.dart';
 class PracticeAnswer {
   final int question;
   final int answer;
-  final PracticeType practiceType;
   DateTime dateTime;
+  int sessionId = -1;
 
-  PracticeAnswer(this.question, this.answer, this.practiceType){
+  PracticeAnswer(this.question, this.answer){
     dateTime = DateTime.now();
   }
 
@@ -19,8 +19,8 @@ class PracticeAnswer {
     return <String, dynamic>{
       "question": question,
       "answer": answer,
-      "type": practiceType.toString().split(".").last,
-      "time": timeFormat
+      "time": timeFormat,
+      "sessionId": sessionId
     };
   }
 }

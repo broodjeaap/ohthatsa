@@ -12,7 +12,7 @@ class PracticeThingMod extends PracticeThing {
 
   @override
   bool answer(int answer) {
-    answers.add(PracticeAnswer(current, answer, PracticeType.mod));
+    answers.add(PracticeAnswer(current, answer));
     final correctAnswer = current % 7;
     return answer == correctAnswer;
   }
