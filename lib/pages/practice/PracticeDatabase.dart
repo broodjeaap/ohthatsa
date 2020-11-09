@@ -41,7 +41,7 @@ class PracticeDatabase {
         INNER JOIN PracticeAnswer on PracticeSession.id = PracticeAnswer.sessionId;
     ''');
     await database.execute('''
-    CREATE VIEW AnswersCorrectByTypeView AS
+    CREATE VIEW AnswersCorrectByTypeViewAll AS
     SELECT 
         type,
         SUM(correct = 1)*1.0 AS correct,
@@ -53,15 +53,48 @@ class PracticeDatabase {
         type;
     ''');
     await database.execute('''
-    CREATE VIEW AnswersRatioByTypeView AS
+    CREATE VIEW AnswersCorrectByTypeView7d AS
     SELECT 
         type,
-        correct,
-        incorrect,
-        total,
-        correct / total AS ratio
+        SUM(correct = 1)*1.0 AS correct,
+        SUM(correct = 0)*1.0 AS incorrect,
+        COUNT(*) AS total,
+        CAST(
+          strftime('%s', time) 
+          AS INTEGER
+        ) as time,
+        CAST(
+          strftime("%s", DATETIME('now', '-7 day')) 
+          AS INTEGER
+        ) as before
       FROM
-        AnswersCorrectByTypeView
+        AnswersView
+      WHERE
+        time < before
+      GROUP BY
+        type;
+    ''');
+    await database.execute('''
+    CREATE VIEW AnswersCorrectByTypeView30d AS
+    SELECT 
+        type,
+        SUM(correct = 1)*1.0 AS correct,
+        SUM(correct = 0)*1.0 AS incorrect,
+        COUNT(*) AS total,
+        CAST(
+          strftime('%s', time) 
+          AS INTEGER
+        ) as time,
+        CAST(
+          strftime("%s", DATETIME('now', '-1 month ')) 
+          AS INTEGER
+        ) as before
+      FROM
+        AnswersView
+      WHERE
+        time < before
+      GROUP BY
+        type;
     ''');
   }
 
@@ -95,18 +128,31 @@ class PracticeDatabase {
   static Future<Map<String, dynamic>> getStats() async {
     var db = await getDatabase();
     List<Map<String, dynamic>> answers = await db.rawQuery('''
-      SELECT 
+      SELECT
         type,
         correct,
         incorrect,
-        total,
-        ratio
+        total
       FROM
-        AnswersRatioByTypeView
+        AnswersCorrectByTypeViewAll
+      UNION ALL
+      SELECT
+        type,
+        correct,
+        incorrect,
+        total
+      FROM
+        AnswersCorrectByTypeView7d
+      UNION ALL
+      SELECT
+        type,
+        correct,
+        incorrect,
+        total
+      FROM
+        AnswersCorrectByTypeView30d;
     ''');
     print(answers);
-    var first = answers.first;
-    print(first["practice_id"]);
     print("something else");
   }
 }
