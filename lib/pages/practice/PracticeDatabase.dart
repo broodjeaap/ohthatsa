@@ -23,7 +23,7 @@ class PracticeDatabase {
       question INTEGER NOT NULL,
       answer INTEGER NOT NULL,
       time DATETIME NOT NULL,
-      
+      correct BOOLEAN NOT NULL,
       FOREIGN KEY(sessionId) REFERENCES PracticeSession(id)
     );
     ''');
