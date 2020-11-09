@@ -13,10 +13,18 @@ class PracticeThingMonth extends PracticeThing {
   PracticeThingMonth(){
     next();
   }
+
+  @override
+  bool isCorrect(int answer){
+    return current.value == answer;
+  }
+
+
   @override
   bool answer(int answer) {
-    answers.add(PracticeAnswer(current.i, answer));
-    return current.value == answer;
+    final isCorrect = this.isCorrect(answer);
+    answers.add(PracticeAnswer(current.i, answer, isCorrect));
+    return isCorrect;
   }
 
   @override
@@ -25,7 +33,9 @@ class PracticeThingMonth extends PracticeThing {
   }
 
   List<bool> getBoolAnswers(){
-    return answers.map((answer) => Months.getFromInt(answer.question).value == answer.answer).toList();
+    return answers.map(
+      (answer) => answer.correct
+    ).toList();
   }
 
   Text getAppBarTitleText(){
@@ -48,7 +58,7 @@ class PracticeThingMonth extends PracticeThing {
       final answer = answers[answers.length - 1];
       final month = Months.getFromInt(answer.question);
       text = month.toString() + (showCorrect ? ": ${month.value}" : "");
-      if(month.value == answer.answer){
+      if(answer.correct){
         color = Colors.green;
       }
     }
@@ -67,7 +77,7 @@ class PracticeThingMonth extends PracticeThing {
       final answer = answers[answers.length - 2];
       final month = Months.getFromInt(answer.question);
       text = month.toString() + (showCorrect ? ": ${month.value}" : "");
-      if(month.value == answer.answer){
+      if(answer.correct){
         color = Colors.green;
       }
     }

@@ -11,10 +11,16 @@ class PracticeThingMod extends PracticeThing {
   }
 
   @override
-  bool answer(int answer) {
-    answers.add(PracticeAnswer(current, answer));
+  bool isCorrect(int answer){
     final correctAnswer = current % 7;
     return answer == correctAnswer;
+  }
+
+  @override
+  bool answer(int answer) {
+    final isCorrect = this.isCorrect(answer);
+    answers.add(PracticeAnswer(current, answer, isCorrect));
+    return isCorrect;
   }
 
   @override
@@ -30,7 +36,7 @@ class PracticeThingMod extends PracticeThing {
   @override
   List<bool> getBoolAnswers() {
     return answers.map((answer) =>
-      answer.question % 7 == answer.answer
+      answer.correct
     ).toList();
   }
 
@@ -50,7 +56,7 @@ class PracticeThingMod extends PracticeThing {
       final answer = answers[answers.length - 1];
       final correctAnswer = answer.question % 7;
       text = answer.question.toString() + (showCorrect ? ": $correctAnswer" : "");
-      if(answer.answer == correctAnswer){
+      if(answer.correct){
         color = Colors.green;
       }
     }
@@ -69,7 +75,7 @@ class PracticeThingMod extends PracticeThing {
       final answer = answers[answers.length - 2];
       final correctAnswer = answer.question % 7;
       text = answer.question.toString() + (showCorrect ? ": $correctAnswer" : "");
-      if(answer.answer == correctAnswer){
+      if(answer.correct){
         color = Colors.green;
       }
     }

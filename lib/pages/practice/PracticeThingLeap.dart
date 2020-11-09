@@ -13,10 +13,16 @@ class PracticeThingLeap extends PracticeThing {
   }
 
   @override
-  bool answer(int answer) {
-    answers.add(PracticeAnswer(current, answer));
+  bool isCorrect(int answer){
     final correctAnswer = DayCalculator.isLeapYear(current);
     return (answer != 0) == correctAnswer;
+  }
+
+  @override
+  bool answer(int answer) {
+    final isCorrect = this.isCorrect(answer);
+    answers.add(PracticeAnswer(current, answer, isCorrect));
+    return isCorrect;
   }
 
   @override
@@ -26,7 +32,7 @@ class PracticeThingLeap extends PracticeThing {
 
   List<bool> getBoolAnswers(){
     return answers.map((answer) =>
-      (answer.answer != 0) == DayCalculator.isLeapYear(answer.question)
+      answer.correct
     ).toList();
   }
 
@@ -50,7 +56,7 @@ class PracticeThingLeap extends PracticeThing {
       final answer = answers[answers.length - 1];
       final correctAnswer = DayCalculator.isLeapYear(answer.question);
       text = answer.question.toString() + (showCorrect ? ": $correctAnswer" : "");
-      if((answer.answer != 0) == correctAnswer){
+      if(answer.correct){
         color = Colors.green;
       }
     }
@@ -69,7 +75,7 @@ class PracticeThingLeap extends PracticeThing {
       final answer = answers[answers.length - 2];
       final correctAnswer = DayCalculator.isLeapYear(answer.question);
       text = answer.question.toString() + (showCorrect ? ": $correctAnswer" : "");
-      if((answer.answer != 0) == correctAnswer){
+      if(answer.correct){
         color = Colors.green;
       }
     }

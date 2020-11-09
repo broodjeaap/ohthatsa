@@ -14,10 +14,16 @@ class PracticeThingCentury extends PracticeThing {
   }
 
   @override
-  bool answer(int answer) {
-    answers.add(PracticeAnswer(current, answer));
+  bool isCorrect(int answer){
     final correctAnswer = DayCalculator.getCenturyValue(current);
     return answer == correctAnswer;
+  }
+
+  @override
+  bool answer(int answer) {
+    bool isCorrect = this.isCorrect(answer);
+    answers.add(PracticeAnswer(current, answer, isCorrect));
+    return isCorrect;
   }
 
   @override
@@ -27,7 +33,7 @@ class PracticeThingCentury extends PracticeThing {
 
   List<bool> getBoolAnswers(){
     return answers.map((answer) =>
-      answer.answer == DayCalculator.getCenturyValue(answer.question)
+      answer.correct
     ).toList();
   }
 
@@ -51,7 +57,7 @@ class PracticeThingCentury extends PracticeThing {
       final answer = answers[answers.length - 1];
       final correctAnswer = DayCalculator.getCenturyValue(answer.question);
       text = answer.question.toString() + (showCorrect ? ": $correctAnswer" : "");
-      if(answer.answer == correctAnswer){
+      if(answer.correct){
         color = Colors.green;
       }
     }
@@ -70,7 +76,7 @@ class PracticeThingCentury extends PracticeThing {
       final answer = answers[answers.length - 2];
       final correctAnswer = DayCalculator.getCenturyValue(answer.question);
       text = answer.question.toString() + (showCorrect ? ": $correctAnswer" : "");
-      if(answer.answer == correctAnswer){
+      if(answer.correct){
         color = Colors.green;
       }
     }

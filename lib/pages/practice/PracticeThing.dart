@@ -8,6 +8,7 @@ abstract class PracticeThing {
   final random = Random();
   final List<PracticeAnswer> answers = new List<PracticeAnswer>();
 
+  bool isCorrect(int answer);
   bool answer(int answer);
   void next();
   List<bool> getBoolAnswers();
