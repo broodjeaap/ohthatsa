@@ -1,7 +1,11 @@
+import 'dart:async';
+import 'dart:core';
+
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+
 
 class PracticeDatabase {
   static _onCreate(Database database, int version) async {
@@ -48,6 +52,6 @@ class PracticeDatabase {
       answer.sessionId = sessionId;
       batch.insert("PracticeAnswer", answer.toMap());
     });
-    await batch.commit();
+    await batch.commit(noResult: true);
   }
 }
