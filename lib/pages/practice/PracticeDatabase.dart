@@ -27,6 +27,18 @@ class PracticeDatabase {
       FOREIGN KEY(sessionId) REFERENCES PracticeSession(id)
     );
     ''');
+    await database.execute('''
+    CREATE VIEW AnswersView AS
+    SELECT
+      PracticeSession.id as practice_id,
+      PracticeAnswer.id as answer_id,
+      PracticeSession.type as type,
+      PracticeAnswer.question as question,
+      PracticeAnswer.answer as answer,
+      PracticeAnswer.time as time
+    FROM PracticeSession 
+        INNER JOIN PracticeAnswer on PracticeSession.id = PracticeAnswer.id;
+    ''');
   }
 
   static Future<Database> getDatabase() async {
@@ -58,16 +70,7 @@ class PracticeDatabase {
 
   static Future<Map<String, dynamic>> getStats() async {
     var db = await getDatabase();
-    List<Map<String, dynamic>> answers = await db.rawQuery('''
-      SELECT 
-        PracticeSession.id as practice_id,
-        PracticeAnswer.id as answer_id,
-        PracticeSession.type as type,
-        PracticeAnswer.question as question,
-        PracticeAnswer.answer as answer,
-        PracticeAnswer.time as time 
-      FROM PracticeSession 
-        INNER JOIN PracticeAnswer on PracticeSession.id = PracticeAnswer.id;''');
+    List<Map<String, dynamic>> answers = await db.rawQuery('''SELECT * FROM AnswersView;''');
     print(answers);
     var first = answers.first;
     print(first["practice_id"]);
