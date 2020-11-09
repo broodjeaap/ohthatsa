@@ -71,7 +71,20 @@ class PracticeDatabase {
 
   static Future<Map<String, dynamic>> getStats() async {
     var db = await getDatabase();
-    List<Map<String, dynamic>> answers = await db.rawQuery('''SELECT * FROM AnswersView;''');
+    List<Map<String, dynamic>> answers = await db.rawQuery('''
+      SELECT 
+        type,
+        SUM(correct = 1) AS correct,
+        SUM(correct = 0) AS incorrect,
+        (
+          (SUM(correct = 1)*1.0) / 
+          (SUM(correct = 0) + SUM(correct = 1))
+        ) as ratio
+      FROM
+        AnswersView
+      GROUP BY
+        type;
+    ''');
     print(answers);
     var first = answers.first;
     print(first["practice_id"]);
