@@ -35,9 +35,10 @@ class PracticeDatabase {
       PracticeSession.type as type,
       PracticeAnswer.question as question,
       PracticeAnswer.answer as answer,
+      PracticeAnswer.correct as correct,
       PracticeAnswer.time as time
     FROM PracticeSession 
-        INNER JOIN PracticeAnswer on PracticeSession.id = PracticeAnswer.id;
+        INNER JOIN PracticeAnswer on PracticeSession.id = PracticeAnswer.sessionId;
     ''');
   }
 
