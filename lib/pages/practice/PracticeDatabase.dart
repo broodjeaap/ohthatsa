@@ -53,5 +53,24 @@ class PracticeDatabase {
       batch.insert("PracticeAnswer", answer.toMap());
     });
     await batch.commit(noResult: true);
+    getStats();
+  }
+
+  static Future<Map<String, dynamic>> getStats() async {
+    var db = await getDatabase();
+    List<Map<String, dynamic>> answers = await db.rawQuery('''
+      SELECT 
+        PracticeSession.id as practice_id,
+        PracticeAnswer.id as answer_id,
+        PracticeSession.type as type,
+        PracticeAnswer.question as question,
+        PracticeAnswer.answer as answer,
+        PracticeAnswer.time as time 
+      FROM PracticeSession 
+        INNER JOIN PracticeAnswer on PracticeSession.id = PracticeAnswer.id;''');
+    print(answers);
+    var first = answers.first;
+    print(first["practice_id"]);
+    print("something else");
   }
 }
