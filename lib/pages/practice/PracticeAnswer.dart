@@ -20,7 +20,7 @@ class PracticeAnswer {
     return <String, dynamic>{
       "question": question,
       "answer": answer,
-      "correct": correct,
+      "correct": correct ? 1 : 0,
       "time": timeFormat,
       "sessionId": sessionId
     };
