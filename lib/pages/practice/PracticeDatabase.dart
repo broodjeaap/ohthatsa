@@ -40,6 +40,29 @@ class PracticeDatabase {
     FROM PracticeSession 
         INNER JOIN PracticeAnswer on PracticeSession.id = PracticeAnswer.sessionId;
     ''');
+    await database.execute('''
+    CREATE VIEW AnswersCorrectByTypeView AS
+    SELECT 
+        type,
+        SUM(correct = 1)*1.0 AS correct,
+        SUM(correct = 0)*1.0 AS incorrect,
+        COUNT(*) AS total
+      FROM
+        AnswersView
+      GROUP BY
+        type;
+    ''');
+    await database.execute('''
+    CREATE VIEW AnswersRatioByTypeView AS
+    SELECT 
+        type,
+        correct,
+        incorrect,
+        total,
+        correct / total AS ratio
+      FROM
+        AnswersCorrectByTypeView
+    ''');
   }
 
   static Future<Database> getDatabase() async {
@@ -74,16 +97,12 @@ class PracticeDatabase {
     List<Map<String, dynamic>> answers = await db.rawQuery('''
       SELECT 
         type,
-        SUM(correct = 1) AS correct,
-        SUM(correct = 0) AS incorrect,
-        (
-          (SUM(correct = 1)*1.0) / 
-          (SUM(correct = 0) + SUM(correct = 1))
-        ) as ratio
+        correct,
+        incorrect,
+        total,
+        ratio
       FROM
-        AnswersView
-      GROUP BY
-        type;
+        AnswersRatioByTypeView
     ''');
     print(answers);
     var first = answers.first;
