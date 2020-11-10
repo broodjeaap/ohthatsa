@@ -70,7 +70,7 @@ class PracticeDatabase {
       FROM
         AnswersView
       WHERE
-        time < before
+        time > before
       GROUP BY
         type;
     ''');
@@ -86,13 +86,13 @@ class PracticeDatabase {
           AS INTEGER
         ) as time,
         CAST(
-          strftime("%s", DATETIME('now', '-1 month ')) 
+          strftime("%s", DATETIME('now', '-1 month')) 
           AS INTEGER
         ) as before
       FROM
         AnswersView
       WHERE
-        time < before
+        time > before
       GROUP BY
         type;
     ''');
