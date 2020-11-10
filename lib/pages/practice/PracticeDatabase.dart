@@ -125,34 +125,53 @@ class PracticeDatabase {
     getStats();
   }
 
+  // TODO test the database
   static Future<Map<String, dynamic>> getStats() async {
     var db = await getDatabase();
     List<Map<String, dynamic>> answers = await db.rawQuery('''
       SELECT
+        "All" AS range,
         type,
         correct,
         incorrect,
-        total
+        total,
+        correct / total AS ratio
       FROM
         AnswersCorrectByTypeViewAll
       UNION ALL
       SELECT
+        "7d" AS range,
         type,
         correct,
         incorrect,
-        total
+        total,
+        correct / total AS ratio
       FROM
         AnswersCorrectByTypeView7d
       UNION ALL
       SELECT
+        "30d" AS range,
         type,
         correct,
         incorrect,
-        total
+        total,
+        correct / total AS ratio
       FROM
         AnswersCorrectByTypeView30d;
     ''');
     print(answers);
-    print("something else");
+    var stats = getEmtpyStats();
+
+    print(stats);
+  }
+
+  static Map<String, int> getEmtpyStats(){
+    Map<String, int> emptyStats = Map<String, int>();
+    ["All", "30d", "7d"].forEach((range) => {
+      PracticeType.values.forEach((type) {
+        emptyStats["$range ${type.toString().split(".").last}"] = 0;
+      })
+    });
+    return emptyStats;
   }
 }
