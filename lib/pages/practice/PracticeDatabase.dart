@@ -135,7 +135,7 @@ class PracticeDatabase {
         correct,
         incorrect,
         total,
-        correct / total AS ratio
+        (correct / total) * 100 AS ratio
       FROM
         AnswersCorrectByTypeViewAll
       UNION ALL
@@ -145,7 +145,7 @@ class PracticeDatabase {
         correct,
         incorrect,
         total,
-        correct / total AS ratio
+        (correct / total) * 100 AS ratio
       FROM
         AnswersCorrectByTypeView7d
       UNION ALL
@@ -155,21 +155,25 @@ class PracticeDatabase {
         correct,
         incorrect,
         total,
-        correct / total AS ratio
+        (correct / total) * 100 AS ratio
       FROM
         AnswersCorrectByTypeView30d;
     ''');
     print(answers);
     var stats = getEmtpyStats();
-
+    for(var stat in answers){
+      var typeRange = "${stat['range']} ${stat['type']}";
+      stats[typeRange] = (stat['ratio'] as double).roundToDouble();
+    }
     print(stats);
   }
 
-  static Map<String, int> getEmtpyStats(){
-    Map<String, int> emptyStats = Map<String, int>();
+  static Map<String, double> getEmtpyStats(){
+    Map<String, double> emptyStats = Map<String, double>();
     ["All", "30d", "7d"].forEach((range) => {
       PracticeType.values.forEach((type) {
-        emptyStats["$range ${type.toString().split(".").last}"] = 0;
+        var typeRange = "$range ${type.toString().split(".").last}";
+        emptyStats[typeRange] = 0;
       })
     });
     return emptyStats;
