@@ -122,7 +122,6 @@ class PracticeDatabase {
       batch.insert("PracticeAnswer", answer.toMap());
     });
     await batch.commit(noResult: true);
-    getStats();
   }
 
   // TODO test the database
@@ -163,7 +162,7 @@ class PracticeDatabase {
     var stats = getEmtpyStats();
     for(var stat in answers){
       var typeRange = "${stat['range']} ${stat['type']}";
-      stats[typeRange] = (stat['ratio'] as double).roundToDouble();
+      stats[typeRange] = stat['ratio'] as double;
     }
     print(stats);
   }
