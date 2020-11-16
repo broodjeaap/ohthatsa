@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 
@@ -12,6 +13,19 @@ class PracticeSetupPage extends StatefulWidget {
 class _PracticeSetupState extends State<PracticeSetupPage> {
   int _count = 12;
   bool _showCorrect = true;
+
+  Future<Map<String, double>> _answerStats;
+
+  @override
+  void initState() {
+    this._answerStats = PracticeDatabase.getStats();
+    super.initState();
+  }
+
+  Table getStatsTable(BuildContext context, AsyncSnapshot<Map<String, double>> snapshot){
+
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -53,112 +67,46 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                 }
               ),
               Spacer(),
-              Table(
-                border: TableBorder(
-                  //horizontalInside: BorderSide(),
-                  //verticalInside: BorderSide()
-                ),
-                children: <TableRow>[
-                  TableRow(
-                    children: <Widget>[
-                      // Header
-                      Text(""),
-                      Text("7d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("30d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("All", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
-                    ]
-                  ),
-                  TableRow(
-                    children: <Widget>[
-                      FlatButton(
-                        child: Text("Month"),
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context,
-                              '/practice/practice',
-                              arguments: PracticeSetup(_count, _showCorrect, PracticeType.month)
-                          );
-                        },
+              FutureBuilder<Map<String, double>>(
+                future: _answerStats,
+                builder: (BuildContext context, AsyncSnapshot<Map<String, double>> snapshot){
+                  return Table(
+                    children: <TableRow>[
+                      TableRow(
+                          children: <Widget>[ // Header
+                            Text(""),
+                            Text("7d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                            Text("30d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                            Text("All", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                          ]
                       ),
-                      Text("85%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
-                    ]
-                  ),
-                  TableRow(
-                    children: <Widget>[
-                      FlatButton(
-                        child: Text("Century"),
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context,
-                              '/practice/practice',
-                              arguments: PracticeSetup(_count, _showCorrect, PracticeType.century)
-                          );
-                        },
+                      TableRow(
+                          children: <Widget>[
+                            FlatButton(
+                              child: Text("Month"),
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context,
+                                    '/practice/practice',
+                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.month)
+                                );
+                              },
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                  snapshot.data["All month"].round().toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
+                            Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                          ]
                       ),
-                      Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
                     ]
-                  ),
-                  TableRow(
-                      children: <Widget>[
-                        FlatButton(
-                          child: Text("Leap"),
-                          color: Colors.blue,
-                          textColor: Colors.white,
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context,
-                                '/practice/practice',
-                                arguments: PracticeSetup(_count, _showCorrect, PracticeType.leap)
-                            );
-                          },
-                        ),
-                        Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                        Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                        Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
-                      ]
-                  ),
-                  TableRow(
-                      children: <Widget>[
-                        FlatButton(
-                          child: Text("Modulo 7"),
-                          color: Colors.blue,
-                          textColor: Colors.white,
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context,
-                                '/practice/practice',
-                                arguments: PracticeSetup(_count, _showCorrect, PracticeType.mod)
-                            );
-                          },
-                        ),
-                        Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                        Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                        Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
-                      ]
-                  ),
-                  TableRow(
-                    children: <Widget>[
-                      FlatButton(
-                        child: Text("All"),
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        onPressed: () {},
-                      ),
-                      Text("80%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                      Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
-                    ]
-                  ),
-                ]
-              ),
+                  );
+                }
+              )
             ]
           )
         )
