@@ -125,7 +125,7 @@ class PracticeDatabase {
   }
 
   // TODO test the database
-  static Future<Map<String, dynamic>> getStats() async {
+  static Future<Map<String, double>> getStats() async {
     var db = await getDatabase();
     List<Map<String, dynamic>> answers = await db.rawQuery('''
       SELECT
@@ -165,6 +165,7 @@ class PracticeDatabase {
       stats[typeRange] = stat['ratio'] as double;
     }
     print(stats);
+    return stats;
   }
 
   static Map<String, double> getEmtpyStats(){
