@@ -134,7 +134,7 @@ class PracticeDatabase {
         correct,
         incorrect,
         total,
-        (correct / total) * 100 AS ratio
+        ROUND((correct / total) * 100, 1) AS ratio
       FROM
         AnswersCorrectByTypeViewAll
       UNION ALL
@@ -144,7 +144,7 @@ class PracticeDatabase {
         correct,
         incorrect,
         total,
-        (correct / total) * 100 AS ratio
+        ROUND((correct / total) * 100, 1) AS ratio
       FROM
         AnswersCorrectByTypeView7d
       UNION ALL
@@ -154,7 +154,7 @@ class PracticeDatabase {
         correct,
         incorrect,
         total,
-        (correct / total) * 100 AS ratio
+        ROUND((correct / total) * 100, 1) AS ratio
       FROM
         AnswersCorrectByTypeView30d;
     ''');
@@ -173,7 +173,7 @@ class PracticeDatabase {
     ["All", "30d", "7d"].forEach((range) => {
       PracticeType.values.forEach((type) {
         var typeRange = "$range ${type.toString().split(".").last}";
-        emptyStats[typeRange] = 0;
+        emptyStats[typeRange] = 0.0;
       })
     });
     return emptyStats;
