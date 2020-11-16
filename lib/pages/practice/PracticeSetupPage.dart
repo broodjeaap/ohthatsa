@@ -4,6 +4,7 @@ import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
+import 'package:ohthatsa/util/Extensions.dart';
 
 class PracticeSetupPage extends StatefulWidget {
   @override
@@ -23,19 +24,45 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
     super.initState();
   }
 
-  Text getStatTableText(double value){
+  TableRow getStatTableRow(AsyncSnapshot<Map<String, double>> snapshot, PracticeType practiceType){
+    final typeString = practiceType.toString().split(".").last;
+    return TableRow(
+        children: <Widget>[
+          FlatButton(
+            child: Text(typeString.capitalize()),
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(
+                  context,
+                  '/practice/practice',
+                  arguments: PracticeSetup(_count, _showCorrect, practiceType)
+              );
+            },
+          ),
+          getStatTableText(snapshot.hasData ? snapshot.data["7d $typeString"] : null),
+          getStatTableText(snapshot.hasData ? snapshot.data["30d $typeString"] : null),
+          getStatTableText(snapshot.hasData ? snapshot.data["All $typeString"] : null),
+        ]
+    );
+  }
+
+  Widget getStatTableText(double value){
     var text = "-";
     var color = Colors.grey.shade500;
     if (value != null){
       text = value.toString() + "%";
       color = value >= 70 ? Colors.green : Colors.red;
     }
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 25,
-        color: color
+    return Align(
+      alignment: Alignment.center,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 25,
+          color: color,
+        ),
+        textAlign: TextAlign.center,
       )
     );
   }
@@ -94,95 +121,11 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                             Text("All", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
                           ]
                       ),
-                      TableRow(
-                          children: <Widget>[
-                            FlatButton(
-                              child: Text("Month"),
-                              color: Colors.blue,
-                              textColor: Colors.white,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context,
-                                    '/practice/practice',
-                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.month)
-                                );
-                              },
-                            ),
-                            getStatTableText(snapshot.data["7d month"]),
-                            getStatTableText(snapshot.data["30d month"]),
-                            getStatTableText(snapshot.data["All month"]),
-                          ]
-                      ),
-                      TableRow(
-                          children: <Widget>[
-                            FlatButton(
-                              child: Text("Century"),
-                              color: Colors.blue,
-                              textColor: Colors.white,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context,
-                                    '/practice/practice',
-                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.century)
-                                );
-                              },
-                            ),
-                            getStatTableText(snapshot.data["7d century"]),
-                            getStatTableText(snapshot.data["30d century"]),
-                            getStatTableText(snapshot.data["All century"]),
-                          ]
-                      ),
-                      TableRow(
-                          children: <Widget>[
-                            FlatButton(
-                              child: Text("Leap"),
-                              color: Colors.blue,
-                              textColor: Colors.white,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context,
-                                    '/practice/practice',
-                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.leap)
-                                );
-                              },
-                            ),
-                            getStatTableText(snapshot.data["7d leap"]),
-                            getStatTableText(snapshot.data["30d leap"]),
-                            getStatTableText(snapshot.data["All leap"]),
-                          ]
-                      ),
-                      TableRow(
-                          children: <Widget>[
-                            FlatButton(
-                              child: Text("Mod7"),
-                              color: Colors.blue,
-                              textColor: Colors.white,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context,
-                                    '/practice/practice',
-                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.mod)
-                                );
-                              },
-                            ),
-                            getStatTableText(snapshot.data["7d mod"]),
-                            getStatTableText(snapshot.data["30d mod"]),
-                            getStatTableText(snapshot.data["All mod"]),
-                          ]
-                      ),
-                      TableRow(
-                          children: <Widget>[
-                            FlatButton(
-                              child: Text("All"),
-                              color: Colors.blue,
-                              textColor: Colors.white,
-                              onPressed: () {},
-                            ),
-                            getStatTableText(snapshot.data["7d all"]),
-                            getStatTableText(snapshot.data["30d all"]),
-                            getStatTableText(snapshot.data["All all"]),
-                          ]
-                      ),
+                      getStatTableRow(snapshot, PracticeType.month),
+                      getStatTableRow(snapshot, PracticeType.century),
+                      getStatTableRow(snapshot, PracticeType.leap),
+                      getStatTableRow(snapshot, PracticeType.mod),
+                      getStatTableRow(snapshot, PracticeType.all),
                     ]
                   );
                 }
