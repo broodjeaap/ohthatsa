@@ -23,6 +23,23 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
     super.initState();
   }
 
+  Text getStatTableText(double value){
+    var text = "-";
+    var color = Colors.grey.shade500;
+    if (value != null){
+      text = value.toString() + "%";
+      color = value >= 70 ? Colors.green : Colors.red;
+    }
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 25,
+        color: color
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -91,21 +108,9 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                                 );
                               },
                             ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["7d month"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["30d month"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["All month"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
+                            getStatTableText(snapshot.data["7d month"]),
+                            getStatTableText(snapshot.data["30d month"]),
+                            getStatTableText(snapshot.data["All month"]),
                           ]
                       ),
                       TableRow(
@@ -122,21 +127,9 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                                 );
                               },
                             ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["7d century"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["30d century"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["All century"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
+                            getStatTableText(snapshot.data["7d century"]),
+                            getStatTableText(snapshot.data["30d century"]),
+                            getStatTableText(snapshot.data["All century"]),
                           ]
                       ),
                       TableRow(
@@ -153,21 +146,9 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                                 );
                               },
                             ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["7d leap"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["30d leap"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["All leap"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
+                            getStatTableText(snapshot.data["7d leap"]),
+                            getStatTableText(snapshot.data["30d leap"]),
+                            getStatTableText(snapshot.data["All leap"]),
                           ]
                       ),
                       TableRow(
@@ -184,21 +165,9 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                                 );
                               },
                             ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["7d mod"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["30d mod"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["All mod"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
+                            getStatTableText(snapshot.data["7d mod"]),
+                            getStatTableText(snapshot.data["30d mod"]),
+                            getStatTableText(snapshot.data["All mod"]),
                           ]
                       ),
                       TableRow(
@@ -209,21 +178,9 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                               textColor: Colors.white,
                               onPressed: () {},
                             ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["7d mod"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["30d mod"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
-                            Text(
-                                snapshot.hasData ?
-                                snapshot.data["All mod"].toString() + "%" : "-",
-                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
-                            ),
+                            getStatTableText(snapshot.data["7d all"]),
+                            getStatTableText(snapshot.data["30d all"]),
+                            getStatTableText(snapshot.data["All all"]),
                           ]
                       ),
                     ]
