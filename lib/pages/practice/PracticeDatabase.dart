@@ -159,23 +159,11 @@ class PracticeDatabase {
         AnswersCorrectByTypeView30d;
     ''');
     print(answers);
-    var stats = getEmtpyStats();
+    Map<String, double> stats = Map<String, double>();
     for(var stat in answers){
       var typeRange = "${stat['range']} ${stat['type']}";
       stats[typeRange] = stat['ratio'] as double;
     }
-    print(stats);
     return stats;
-  }
-
-  static Map<String, double> getEmtpyStats(){
-    Map<String, double> emptyStats = Map<String, double>();
-    ["All", "30d", "7d"].forEach((range) => {
-      PracticeType.values.forEach((type) {
-        var typeRange = "$range ${type.toString().split(".").last}";
-        emptyStats[typeRange] = 0.0;
-      })
-    });
-    return emptyStats;
   }
 }
