@@ -13,6 +13,7 @@ class PracticeSetupPage extends StatefulWidget {
 class _PracticeSetupState extends State<PracticeSetupPage> {
   int _count = 12;
   bool _showCorrect = true;
+  final _ranges = ["", "7d", "30d", "All"];
 
   Future<Map<String, double>> _answerStats;
 
@@ -20,10 +21,6 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
   void initState() {
     this._answerStats = PracticeDatabase.getStats();
     super.initState();
-  }
-
-  Table getStatsTable(BuildContext context, AsyncSnapshot<Map<String, double>> snapshot){
-
   }
 
   @override
@@ -96,7 +93,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                             ),
                             Text(
                                 snapshot.hasData ?
-                                  snapshot.data["7d month"].toString() + "%" : "-",
+                                snapshot.data["7d month"].toString() + "%" : "-",
                                 textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
                             ),
                             Text(
@@ -107,6 +104,124 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                             Text(
                                 snapshot.hasData ?
                                 snapshot.data["All month"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                          ]
+                      ),
+                      TableRow(
+                          children: <Widget>[
+                            FlatButton(
+                              child: Text("Century"),
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context,
+                                    '/practice/practice',
+                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.century)
+                                );
+                              },
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["7d century"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["30d century"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["All century"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                          ]
+                      ),
+                      TableRow(
+                          children: <Widget>[
+                            FlatButton(
+                              child: Text("Leap"),
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context,
+                                    '/practice/practice',
+                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.leap)
+                                );
+                              },
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["7d leap"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["30d leap"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["All leap"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                          ]
+                      ),
+                      TableRow(
+                          children: <Widget>[
+                            FlatButton(
+                              child: Text("Mod7"),
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context,
+                                    '/practice/practice',
+                                    arguments: PracticeSetup(_count, _showCorrect, PracticeType.mod)
+                                );
+                              },
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["7d mod"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["30d mod"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["All mod"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                          ]
+                      ),
+                      TableRow(
+                          children: <Widget>[
+                            FlatButton(
+                              child: Text("All"),
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              onPressed: () {},
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["7d mod"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["30d mod"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["All mod"].toString() + "%" : "-",
                                 textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
                             ),
                           ]
