@@ -96,11 +96,19 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                             ),
                             Text(
                                 snapshot.hasData ?
-                                  snapshot.data["All month"].round().toString() + "%" : "-",
+                                  snapshot.data["7d month"].toString() + "%" : "-",
                                 textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
                             ),
-                            Text("70%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                            Text("50%", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["30d month"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
+                            Text(
+                                snapshot.hasData ?
+                                snapshot.data["All month"].toString() + "%" : "-",
+                                textAlign: TextAlign.center, style: TextStyle(fontSize: 25)
+                            ),
                           ]
                       ),
                     ]
