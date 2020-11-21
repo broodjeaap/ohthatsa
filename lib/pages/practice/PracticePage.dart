@@ -9,6 +9,7 @@ import 'package:ohthatsa/pages/practice/thing/PracticeThingMod.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingMonth.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThingYear.dart';
 import 'package:ohthatsa/util/Extensions.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -40,6 +41,10 @@ class _PracticeState extends State<PracticePage> {
     switch(practiceType){
       case (PracticeType.month): {
         this.practiceThing = PracticeThingMonth();
+        break;
+      }
+      case (PracticeType.year): {
+        this.practiceThing = PracticeThingYear();
         break;
       }
       case (PracticeType.century): {

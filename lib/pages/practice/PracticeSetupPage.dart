@@ -122,6 +122,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                           ]
                       ),
                       getStatTableRow(snapshot, PracticeType.month),
+                      getStatTableRow(snapshot, PracticeType.year),
                       getStatTableRow(snapshot, PracticeType.century),
                       getStatTableRow(snapshot, PracticeType.leap),
                       getStatTableRow(snapshot, PracticeType.mod),
