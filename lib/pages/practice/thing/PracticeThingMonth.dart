@@ -5,6 +5,7 @@ import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
 import 'package:ohthatsa/util/Months.dart';
+import 'package:ohthatsa/util/Extensions.dart';
 
 class PracticeThingMonth extends PracticeThing {
 
@@ -44,7 +45,7 @@ class PracticeThingMonth extends PracticeThing {
 
   Text getCurrentQuestionText(){
     return Text(
-      current.toString(),
+      current.toString().capitalize(),
       style: TextStyle(
         fontSize: 30
       )
@@ -57,7 +58,7 @@ class PracticeThingMonth extends PracticeThing {
     if(answers.length >= 1){
       final answer = answers[answers.length - 1];
       final month = Months.getFromInt(answer.question);
-      text = month.toString() + (showCorrect ? ": ${month.value}" : "");
+      text = month.toString().capitalize() + (showCorrect ? ": ${month.value}" : "");
       if(answer.correct){
         color = Colors.green;
       }
@@ -76,7 +77,7 @@ class PracticeThingMonth extends PracticeThing {
     if(answers.length >= 2){
       final answer = answers[answers.length - 2];
       final month = Months.getFromInt(answer.question);
-      text = month.toString() + (showCorrect ? ": ${month.value}" : "");
+      text = month.toString().capitalize() + (showCorrect ? ": ${month.value}" : "");
       if(answer.correct){
         color = Colors.green;
       }
