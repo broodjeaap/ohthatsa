@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/text.dart';
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
-import 'package:ohthatsa/pages/practice/PracticeThing.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'PracticeAnswer.dart';
+import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
 
 abstract class PracticeThing {
   final random = Random();

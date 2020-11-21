@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
-import 'package:ohthatsa/pages/practice/PracticeThing.dart';
-import 'package:ohthatsa/pages/practice/PracticeThingCentury.dart';
-import 'package:ohthatsa/pages/practice/PracticeThingLeap.dart';
-import 'package:ohthatsa/pages/practice/PracticeThingMod.dart';
-import 'package:ohthatsa/pages/practice/PracticeThingMonth.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThingCentury.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThingLeap.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThingMod.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThingMonth.dart';
 import 'package:ohthatsa/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/util/Extensions.dart';
