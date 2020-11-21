@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
+import 'package:ohthatsa/pages/practice/thing/PracticeThingAll.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingCentury.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingLeap.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingMod.dart';
@@ -53,8 +54,13 @@ class _PracticeState extends State<PracticePage> {
         this.practiceThing = PracticeThingMod();
         break;
       }
+      case (PracticeType.all): {
+        this.practiceThing = PracticeThingAll();
+        break;
+      }
       default: {
-        //
+
+        break;
       }
     }
   }
