@@ -158,7 +158,6 @@ class PracticeDatabase {
       FROM
         AnswersCorrectByTypeView30d;
     ''');
-    print(answers);
     Map<String, double> stats = Map<String, double>();
     for(var stat in answers){
       var typeRange = "${stat['range']} ${stat['type']}";
