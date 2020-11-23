@@ -13,7 +13,7 @@ import 'package:ohthatsa/pages/practice/thing/PracticeThingYear.dart';
 import 'package:ohthatsa/util/Extensions.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'PracticeAnswer.dart';
+import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
 
 class PracticePage extends StatefulWidget {
   final PracticeSetup practiceSetup;
