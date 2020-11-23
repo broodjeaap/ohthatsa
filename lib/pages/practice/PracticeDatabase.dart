@@ -62,7 +62,7 @@ class PracticeDatabase {
         CAST(
           strftime('%s', time) 
           AS INTEGER
-        ) as time,
+        ) as s_time,
         CAST(
           strftime("%s", DATETIME('now', '-7 day')) 
           AS INTEGER
@@ -70,7 +70,7 @@ class PracticeDatabase {
       FROM
         AnswersView
       WHERE
-        time > before
+        s_time > before
       GROUP BY
         type;
     ''');
@@ -84,7 +84,7 @@ class PracticeDatabase {
         CAST(
           strftime('%s', time) 
           AS INTEGER
-        ) as time,
+        ) as s_time,
         CAST(
           strftime("%s", DATETIME('now', '-1 month')) 
           AS INTEGER
@@ -92,7 +92,7 @@ class PracticeDatabase {
       FROM
         AnswersView
       WHERE
-        time > before
+        s_time > before
       GROUP BY
         type;
     ''');
