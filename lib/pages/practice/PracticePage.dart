@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
@@ -226,7 +228,19 @@ class _PracticeState extends State<PracticePage> {
       practiceThing.next()
     });
     if((_startCount - _count) == 0) {
+
+
+      var random = Random();
+      for(var i = 0 ; i < 100 ; i++) {
+        var pa = PracticeAnswer(0, 0, random.nextBool());
+        pa.dateTime = pa.dateTime.add(
+            Duration(days: random.nextInt(90) - 45)
+        );
+        practiceThing.answers.add(pa);
+      }
+
       PracticeDatabase.insertAnswers(practiceThing.answers, practiceType);
+
       showDialog(
         context: context,
         child: finishedPracticeDialog()
