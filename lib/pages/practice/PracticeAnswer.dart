@@ -1,7 +1,4 @@
 import 'package:intl/intl.dart';
-import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
-import 'package:ohthatsa/pages/practice/PracticeType.dart';
-import 'package:ohthatsa/util/Months.dart';
 
 class PracticeAnswer {
   final int question;
