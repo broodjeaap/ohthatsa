@@ -26,6 +26,13 @@ class AppDrawer extends StatelessWidget {
               }
           ),
           ListTile(
+              title: Text("Notifications"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/notifications");
+              }
+          ),
+          ListTile(
               title: Text("Practice Months"),
               onTap: () {
                 Navigator.pop(context);
