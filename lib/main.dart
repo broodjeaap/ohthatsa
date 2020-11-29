@@ -23,7 +23,7 @@ final BehaviorSubject<String> selectNotificationSubject =
   BehaviorSubject<String>();
 
 const MethodChannel platform =
-  MethodChannel('dexterx.dev/flutter_local_notifications_example');
+  MethodChannel('net.broodjeaap.othatsa');
 
 class ReceivedNotification {
   ReceivedNotification({
