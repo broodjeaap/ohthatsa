@@ -39,6 +39,12 @@ class _NotificationPageState extends State<NotificationsPage> {
               onPressed: _scheduleNotify
           ),
           FlatButton(
+              child: Text("Repeat!"),
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: _repeatNotification
+          ),
+          FlatButton(
               child: Text("Waiting?"),
               color: Colors.blue,
               textColor: Colors.white,
@@ -105,6 +111,20 @@ class _NotificationPageState extends State<NotificationsPage> {
         ],
       ),
     );
+  }
+
+  Future<void> _repeatNotification() async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(
+        'id',
+        'name',
+        'desc'
+    );
+    const NotificationDetails platformChannelSpecifics =
+    NotificationDetails(android: androidPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.periodicallyShow(0, 'repeating title',
+        'repeating body', RepeatInterval.hourly, platformChannelSpecifics,
+        androidAllowWhileIdle: true);
   }
 
   Future<void> _cancelAllNotifications() async {
