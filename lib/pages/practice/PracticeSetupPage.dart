@@ -6,6 +6,8 @@ import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/util/Extensions.dart';
 
+import 'instructions/MonthInstructionDialog.dart';
+
 class PracticeSetupPage extends StatefulWidget {
   @override
   _PracticeSetupState createState() => _PracticeSetupState();
@@ -24,6 +26,29 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
     super.initState();
   }
 
+  SimpleDialog getInstructionDialog(PracticeType practiceType){
+    switch(practiceType){
+      case PracticeType.month: {
+        return getMonthInstructionDialog();
+      }
+      case PracticeType.year: {
+        return SimpleDialog();
+      }
+      case PracticeType.century: {
+        return SimpleDialog();
+      }
+      case PracticeType.leap: {
+        return SimpleDialog();
+      }
+      case PracticeType.mod: {
+        return SimpleDialog();
+      }
+      default: {
+        return SimpleDialog();
+      }
+    }
+  }
+
   TableRow getStatTableRow(AsyncSnapshot<Map<String, double>> snapshot, PracticeType practiceType){
     final typeString = practiceType.toString().split(".").last;
     return TableRow(
@@ -37,6 +62,12 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                   context,
                   '/practice/practice',
                   arguments: PracticeSetup(_count, _showCorrect, practiceType)
+              );
+            },
+            onLongPress: () {
+              showDialog(
+                context: context,
+                child: this.getInstructionDialog(practiceType)
               );
             },
           ),
@@ -130,6 +161,10 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                     ]
                   );
                 }
+              ),
+              Text(
+                "Long press for instructions",
+                style: TextStyle(fontSize: 10, color: Colors.grey)
               )
             ]
           )
