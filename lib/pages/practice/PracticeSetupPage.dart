@@ -86,7 +86,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                     "How many rounds",
                     style: TextStyle(fontSize: 20),
                   ),
-                  NumberPicker.integer(
+                  NumberPicker.horizontal(
                     initialValue: _count,
                     minValue: 1,
                     maxValue: 500,
@@ -118,7 +118,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                             Text(""),
                             Text("7d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
                             Text("30d", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
-                            Text("All", textAlign: TextAlign.center, style: TextStyle(fontSize: 25))
+                            Text("All", textAlign: TextAlign.center, style: TextStyle(fontSize: 25)),
                           ]
                       ),
                       getStatTableRow(snapshot, PracticeType.month),
