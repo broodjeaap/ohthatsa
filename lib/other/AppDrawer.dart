@@ -33,7 +33,7 @@ class AppDrawer extends StatelessWidget {
               }
           ),
           ListTile(
-              title: Text("Practice Months"),
+              title: Text("Practice"),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, "/practice/setup");
