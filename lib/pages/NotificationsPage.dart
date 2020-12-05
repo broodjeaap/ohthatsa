@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/main.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingAll.dart';

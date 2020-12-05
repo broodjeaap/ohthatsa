@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';

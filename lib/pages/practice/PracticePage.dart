@@ -7,7 +7,7 @@ import 'package:ohthatsa/pages/practice/thing/PracticeThingCentury.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingLeap.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingMod.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingMonth.dart';
-import 'package:ohthatsa/AppDrawer.dart';
+import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingYear.dart';
 
