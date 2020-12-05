@@ -112,7 +112,10 @@ class _PracticeState extends State<PracticePage> {
 
   SimpleDialog finishedPracticeDialog() {
     return SimpleDialog(
-      title: Text("Practice Complete!"),
+      title: Text(
+          "Practice Complete!",
+          style: TextStyle(fontSize: 25, color: Colors.blue)
+      ),
       contentPadding: EdgeInsets.all(50),
       children: <Widget>[
         Row(
