@@ -154,11 +154,36 @@ class MonthValuesPage extends StatelessWidget {
                       "6",
                       style: TextStyle(fontSize: 20)
                   ),
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("1", style: TextStyle(color: Colors.grey)),
+                      Text("1", style: TextStyle(color: Colors.grey)),
+                      Text("1", style: TextStyle(color: Colors.blue)),
+                      Text("1", style: TextStyle(color: Colors.grey))
+                    ],
+                  )
                 ],
               )
             ),
             Container(
-              child: Text("test")
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("1", style: TextStyle(color: Colors.grey)),
+                      Text("1", style: TextStyle(color: Colors.grey)),
+                      Text("1", style: TextStyle(color: Colors.blue)),
+                      Text("1", style: TextStyle(color: Colors.grey))
+                    ],
+                  )
+                ]
+              )
             )
           ]
         )
