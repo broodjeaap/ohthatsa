@@ -1,16 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/util/Months.dart';
 
-class MonthValuesPage extends StatelessWidget {
+class MonthValuesPage extends StatefulWidget {
+  @override
+  _MonthValuesState createState() => _MonthValuesState();
+}
+
+class _MonthValuesState extends State<MonthValuesPage> {
+  int year = DateTime.now().year;
   static const formulaStyle = TextStyle(
-      fontSize: 25
+    fontSize: 20
+  );
+  static const formulaStyleU = TextStyle(
+    fontSize: 20,
+    decoration: TextDecoration.underline
   );
   static const YYStyle = TextStyle(
+    color: Colors.green,
+    fontSize: 20
+  );
+  static const YYStyleU = TextStyle(
       color: Colors.green,
-      fontSize: 25
+      fontSize: 20,
+      decoration: TextDecoration.underline
+  );
+  static const pageNum = TextStyle(
+    color: Colors.grey,
+    fontSize: 20
+  );
+  static const pageNumCurrent = TextStyle(
+      color: Colors.blue,
+      fontSize: 20
   );
   @override
   Widget build(BuildContext context) {
@@ -22,6 +46,7 @@ class MonthValuesPage extends StatelessWidget {
         body: PageView(
           children: <Widget>[
             Container(
+              padding: EdgeInsets.fromLTRB(0, 50, 0, 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,7 +72,7 @@ class MonthValuesPage extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    "And calculate:",
+                    "Calculate:",
                     style: TextStyle(fontSize: 25)
                   ),
                   Row(
@@ -75,111 +100,70 @@ class MonthValuesPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    "Calculate:",
-                    style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                    "(YY + floor(YY / 4)) % 7",
-                    style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "So for example:",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                          "19",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 25
-                          )
-                      ),
-                      Text(
-                          "67",
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 25
-                          )
-                      )
-                    ],
-                  ),
-                  Text(
-                      "The calculation becomes",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "(67 + floor(67 / 4)) % 7",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "Let's first calculate '67 / 4': 16.75",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "Fill that into the calculation:",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "(67 + floor(16.75)) % 7",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "'Floor' it:",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "(67 + 16) % 7",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "Calculate '67 + 16': 83",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "And that leaves us with: ",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "83 % 7",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "Which gives us a year value of:",
-                      style: TextStyle(fontSize: 20)
-                  ),
-                  Text(
-                      "6",
-                      style: TextStyle(fontSize: 20)
-                  ),
                   Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("1", style: TextStyle(color: Colors.grey)),
-                      Text("1", style: TextStyle(color: Colors.grey)),
-                      Text("1", style: TextStyle(color: Colors.blue)),
-                      Text("1", style: TextStyle(color: Colors.grey))
+                      Text("1", style: pageNumCurrent),
+                      Text(" - ", style: pageNum),
+                      Text("2", style: pageNum),
                     ],
                   )
                 ],
               )
             ),
             Container(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  NumberPicker.integer(
+                    initialValue: year,
+                    minValue: 1700,
+                    maxValue: 2399,
+                    onChanged: (newYear) =>
+                        setState(() => year = newYear),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("With ", style: formulaStyle),
+                      Text((year / 100).floor().toString(), style: formulaStyle),
+                      Text(year.toString().substring(2), style: YYStyle),
+                      Text(" our formula becomes: ", style: formulaStyle),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("(", style: formulaStyle),
+                      Text(year.toString().substring(2), style: YYStyle),
+                      Text(" + floor(", style: formulaStyle),
+                      Text(year.toString().substring(2), style: YYStyleU),
+                      Text(" / 4", style: formulaStyleU),
+                      Text(")) % 7", style: formulaStyle),
+                    ],
+                  ),
+                  Text("arrow", style: TextStyle(fontSize: 10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("(", style: formulaStyle),
+                      Text(year.toString().substring(2), style: YYStyle),
+                      Text(" + ", style: formulaStyle),
+                      Text("floor(" + ((year % 100) / 4).toString() + ")", style: formulaStyleU),
+                      Text(") % 7", style: formulaStyle),
+                    ],
+                  ),
+                  Text("arrow", style: TextStyle(fontSize: 10)),
                   Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("1", style: TextStyle(color: Colors.grey)),
-                      Text("1", style: TextStyle(color: Colors.grey)),
-                      Text("1", style: TextStyle(color: Colors.blue)),
-                      Text("1", style: TextStyle(color: Colors.grey))
+                      Text("1", style: pageNum),
+                      Text(" - ", style: pageNum),
+                      Text("2", style: pageNumCurrent),
                     ],
                   )
                 ]
