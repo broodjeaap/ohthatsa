@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 import 'package:ohthatsa/other/AppDrawer.dart';
+import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/util/Months.dart';
 
 class MonthValuesPage extends StatefulWidget {
@@ -11,7 +12,30 @@ class MonthValuesPage extends StatefulWidget {
 }
 
 class _MonthValuesState extends State<MonthValuesPage> {
-  int year = DateTime.now().year;
+  int year;
+  int yy;
+  String centuriesString;
+  String yyString;
+  double yyDiv4;
+  int yyDiv4Floored;
+  int yearValue;
+
+  @override
+  void initState(){
+    super.initState();
+    this.setYearValues(DateTime.now().year);
+  }
+  void setYearValues(newYear){
+    year = newYear;
+    yy = year % 100;
+    centuriesString = (year ~/ 100).toString();
+    yyString = year.toString().substring(2);
+    yyDiv4 = yy / 4;
+    yyDiv4Floored = yyDiv4.floor();
+    yearValue = DayCalculator.getYearValue(year);
+
+    setState(() {});
+  }
   static const formulaStyle = TextStyle(
     fontSize: 20
   );
@@ -122,14 +146,13 @@ class _MonthValuesState extends State<MonthValuesPage> {
                     initialValue: year,
                     minValue: 1700,
                     maxValue: 2399,
-                    onChanged: (newYear) =>
-                        setState(() => year = newYear),
+                    onChanged: (newYear) => this.setYearValues(newYear)
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("With ", style: formulaStyle),
-                      Text((year / 100).floor().toString(), style: formulaStyle),
+                      Text(centuriesString, style: formulaStyle),
                       Text(year.toString().substring(2), style: YYStyle),
                       Text(" our formula becomes: ", style: formulaStyle),
                     ],
@@ -138,9 +161,9 @@ class _MonthValuesState extends State<MonthValuesPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("(", style: formulaStyle),
-                      Text(year.toString().substring(2), style: YYStyle),
+                      Text(yyString, style: YYStyle),
                       Text(" + floor(", style: formulaStyle),
-                      Text(year.toString().substring(2), style: YYStyleU),
+                      Text(yyString, style: YYStyleU),
                       Text(" / 4", style: formulaStyleU),
                       Text(")) % 7", style: formulaStyle),
                     ],
@@ -150,9 +173,9 @@ class _MonthValuesState extends State<MonthValuesPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("(", style: formulaStyle),
-                      Text(year.toString().substring(2), style: YYStyle),
+                      Text(yyString, style: YYStyle),
                       Text(" + ", style: formulaStyle),
-                      Text("floor(" + ((year % 100) / 4).toString() + ")", style: formulaStyleU),
+                      Text("floor(" + yyDiv4.toString() + ")", style: formulaStyleU),
                       Text(") % 7", style: formulaStyle),
                     ],
                   ),
@@ -161,8 +184,8 @@ class _MonthValuesState extends State<MonthValuesPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("(", style: formulaStyleU),
-                      Text(year.toString().substring(2), style: YYStyleU),
-                      Text(" + " + ((year % 100) / 4).floor().toString() + ")", style: formulaStyleU),
+                      Text(yyString, style: YYStyleU),
+                      Text(" + " + yyDiv4Floored.toString() + ")", style: formulaStyleU),
                       Text(" % 7", style: formulaStyle),
                     ],
                   ),
@@ -170,7 +193,7 @@ class _MonthValuesState extends State<MonthValuesPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(((year % 100) + ((year % 100) / 4).floor()).toString(), style: formulaStyleU),
+                      Text((yy + yyDiv4Floored).toString(), style: formulaStyleU),
                       Text(" % 7", style: formulaStyleU),
                     ],
                   ),
@@ -179,7 +202,7 @@ class _MonthValuesState extends State<MonthValuesPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("So the year value of " + year.toString() + " is: ", style: formulaStyle),
-                      Text((((year % 100) + ((year % 100) / 4).floor()) % 7).toString(), style: formulaStyleU),
+                      Text(yearValue.toString(), style: formulaStyleU),
                     ],
                   ),
                   Spacer(),
