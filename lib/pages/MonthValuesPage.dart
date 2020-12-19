@@ -157,6 +157,31 @@ class _MonthValuesState extends State<MonthValuesPage> {
                     ],
                   ),
                   Text("arrow", style: TextStyle(fontSize: 10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("(", style: formulaStyleU),
+                      Text(year.toString().substring(2), style: YYStyleU),
+                      Text(" + " + ((year % 100) / 4).floor().toString() + ")", style: formulaStyleU),
+                      Text(" % 7", style: formulaStyle),
+                    ],
+                  ),
+                  Text("arrow", style: TextStyle(fontSize: 10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(((year % 100) + ((year % 100) / 4).floor()).toString(), style: formulaStyleU),
+                      Text(" % 7", style: formulaStyleU),
+                    ],
+                  ),
+                  Text("arrow", style: TextStyle(fontSize: 10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("So the year value of " + year.toString() + " is: ", style: formulaStyle),
+                      Text((((year % 100) + ((year % 100) / 4).floor()) % 7).toString(), style: formulaStyleU),
+                    ],
+                  ),
                   Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
