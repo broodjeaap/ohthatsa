@@ -128,10 +128,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => YearInstructionPage());
       }
       default: {
-        return MaterialPageRoute(builder: (context) => YearsPage());
+        return null;
       }
     }
   }
+
+
 }
 
 
