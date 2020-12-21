@@ -16,7 +16,6 @@ class PracticeSetupPage extends StatefulWidget {
 class _PracticeSetupState extends State<PracticeSetupPage> {
   int _count = 12;
   bool _showCorrect = true;
-  final _ranges = ["", "7d", "30d", "All"];
 
   Future<Map<String, double>> _answerStats;
 
