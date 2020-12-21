@@ -64,9 +64,9 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
               );
             },
             onLongPress: () {
-              showDialog(
-                context: context,
-                child: this.getInstructionDialog(practiceType)
+              Navigator.pushNamed(
+                  context,
+                  '/instructions/year'
               );
             },
           ),
