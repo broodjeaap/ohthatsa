@@ -7,6 +7,7 @@ import 'package:ohthatsa/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/pages/MonthValuesPage.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:ohthatsa/pages/practice/instructions/LeapInstructionPage.dart';
 import 'package:ohthatsa/pages/practice/instructions/MonthInstructionPage.dart';
 import 'package:ohthatsa/pages/practice/instructions/YearInstructionPage.dart';
 import 'package:ohthatsa/pages/practice/instructions/CenturyInstructionPage.dart';
@@ -140,7 +141,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => CenturyInstructionPage());
       }
       case "/instructions/leap": {
-        return MaterialPageRoute(builder: (context) => YearInstructionPage());
+        return MaterialPageRoute(builder: (context) => LeapInstructionPage());
       }
       case "/instructions/mod": {
         return MaterialPageRoute(builder: (context) => YearInstructionPage());
