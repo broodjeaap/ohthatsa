@@ -25,29 +25,6 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
     super.initState();
   }
 
-  SimpleDialog getInstructionDialog(PracticeType practiceType){
-    switch(practiceType){
-      case PracticeType.month: {
-        return getMonthInstructionDialog();
-      }
-      case PracticeType.year: {
-        return SimpleDialog();
-      }
-      case PracticeType.century: {
-        return SimpleDialog();
-      }
-      case PracticeType.leap: {
-        return SimpleDialog();
-      }
-      case PracticeType.mod: {
-        return SimpleDialog();
-      }
-      default: {
-        return SimpleDialog();
-      }
-    }
-  }
-
   TableRow getStatTableRow(AsyncSnapshot<Map<String, double>> snapshot, PracticeType practiceType){
     final typeString = practiceType.toString().split(".").last;
     return TableRow(
@@ -66,7 +43,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
             onLongPress: () {
               Navigator.pushNamed(
                   context,
-                  '/instructions/year'
+                  '/instructions/' + practiceType.toString().split(".").last
               );
             },
           ),
