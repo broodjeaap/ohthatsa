@@ -151,7 +151,7 @@ class _MonthValuesState extends State<MonthValuesPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("With ", style: formulaStyle),
+                      Text("For ", style: formulaStyle),
                       Text(centuriesString, style: formulaStyle),
                       Text(year.toString().substring(2), style: YYStyle),
                       Text(" our formula becomes: ", style: formulaStyle),
