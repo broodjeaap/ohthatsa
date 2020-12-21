@@ -137,7 +137,7 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                   )
               ),
               Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  padding: EdgeInsets.fromLTRB(0, 50, 0, 10),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
