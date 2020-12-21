@@ -4,7 +4,7 @@ import 'package:numberpicker/numberpicker.dart';
 
 import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
-import 'package:ohthatsa/util/Months.dart';
+import 'package:term_glyph/term_glyph.dart' as glyph;
 
 class MonthValuesPage extends StatefulWidget {
   @override
@@ -168,7 +168,7 @@ class _MonthValuesState extends State<MonthValuesPage> {
                       Text(")) % 7", style: formulaStyle),
                     ],
                   ),
-                  Text("arrow", style: TextStyle(fontSize: 10)),
+                  Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -179,7 +179,7 @@ class _MonthValuesState extends State<MonthValuesPage> {
                       Text(") % 7", style: formulaStyle),
                     ],
                   ),
-                  Text("arrow", style: TextStyle(fontSize: 10)),
+                  Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -189,7 +189,7 @@ class _MonthValuesState extends State<MonthValuesPage> {
                       Text(" % 7", style: formulaStyle),
                     ],
                   ),
-                  Text("arrow", style: TextStyle(fontSize: 10)),
+                  Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -197,7 +197,7 @@ class _MonthValuesState extends State<MonthValuesPage> {
                       Text(" % 7", style: formulaStyleU),
                     ],
                   ),
-                  Text("arrow", style: TextStyle(fontSize: 10)),
+                  Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
