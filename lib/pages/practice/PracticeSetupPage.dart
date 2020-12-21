@@ -6,7 +6,7 @@ import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/util/Extensions.dart';
 
-import 'instructions/MonthInstructionDialog.dart';
+import 'instructions/MonthInstructionPage.dart';
 
 class PracticeSetupPage extends StatefulWidget {
   @override

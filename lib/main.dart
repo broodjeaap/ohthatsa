@@ -7,6 +7,7 @@ import 'package:ohthatsa/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/pages/MonthValuesPage.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:ohthatsa/pages/practice/instructions/MonthInstructionPage.dart';
 import 'package:ohthatsa/pages/practice/instructions/YearInstructionPage.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter/services.dart';
@@ -101,6 +102,7 @@ class OhThatsA extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "OhThatsA",
+      home: PracticeSetupPage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
@@ -109,6 +111,9 @@ class OhThatsA extends StatelessWidget {
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings){
     switch(settings.name){
+      case "/": {
+        return MaterialPageRoute(builder: (context) => PracticeSetupPage());
+      }
       case "/monthValues": {
         return MaterialPageRoute(builder: (context) => MonthValuesPage());
       }
@@ -124,7 +129,22 @@ class RouteGenerator {
       case "/notifications": {
         return MaterialPageRoute(builder: (context) => NotificationsPage());
       }
+      case "/instructions/month": {
+        return MaterialPageRoute(builder: (context) => MonthInstructionPage());
+      }
       case "/instructions/year": {
+        return MaterialPageRoute(builder: (context) => YearInstructionPage());
+      }
+      case "/instructions/century": {
+        return MaterialPageRoute(builder: (context) => YearInstructionPage());
+      }
+      case "/instructions/leap": {
+        return MaterialPageRoute(builder: (context) => YearInstructionPage());
+      }
+      case "/instructions/mod": {
+        return MaterialPageRoute(builder: (context) => YearInstructionPage());
+      }
+      case "/instructions/all": {
         return MaterialPageRoute(builder: (context) => YearInstructionPage());
       }
       default: {
