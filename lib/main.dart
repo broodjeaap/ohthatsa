@@ -12,6 +12,7 @@ import 'package:ohthatsa/pages/practice/instructions/MonthInstructionPage.dart';
 import 'package:ohthatsa/pages/practice/instructions/YearInstructionPage.dart';
 import 'package:ohthatsa/pages/practice/instructions/CenturyInstructionPage.dart';
 import 'package:ohthatsa/pages/practice/instructions/ModInstructionPage.dart';
+import 'package:ohthatsa/pages/practice/instructions/AllInstructionPage.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter/services.dart';
 
@@ -148,7 +149,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => ModInstructionPage());
       }
       case "/instructions/all": {
-        return MaterialPageRoute(builder: (context) => YearInstructionPage());
+        return MaterialPageRoute(builder: (context) => AllInstructionPage());
       }
       default: {
         return null;
