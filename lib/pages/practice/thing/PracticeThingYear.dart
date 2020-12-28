@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
+import 'package:ohthatsa/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 
 class PracticeThingYear extends PracticeThing {
   int current;
 
-  PracticeThingYear() {
+  PracticeThingYear(PracticePageState practicePageState) : super(practicePageState) {
     next();
   }
 

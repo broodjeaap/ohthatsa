@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:ohthatsa/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
@@ -11,7 +12,7 @@ class PracticeThingMonth extends PracticeThing {
 
   Month current;
   
-  PracticeThingMonth(){
+  PracticeThingMonth(PracticePageState practicePageState) : super(practicePageState) {
     next();
   }
 

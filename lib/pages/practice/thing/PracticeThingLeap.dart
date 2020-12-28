@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/text.dart';
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
-import 'package:ohthatsa/pages/practice/PracticeType.dart';
+import 'package:ohthatsa/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 
 class PracticeThingLeap extends PracticeThing {
   int current;
 
-  PracticeThingLeap(){
+  PracticeThingLeap(PracticePageState practicePageState) : super(practicePageState) {
     next();
   }
 
@@ -85,6 +85,39 @@ class PracticeThingLeap extends PracticeThing {
             fontSize: 10,
             color: color
         )
+    );
+  }
+
+  Widget getButtons(){
+    return Container(
+        padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+          FlatButton(
+              onPressed: () {
+                practicePageState.checkAnswer(0);
+              },
+              color: Colors.blue,
+              textColor: Colors.white,
+              child: Text(
+                  "0",
+                  style: TextStyle(fontSize: 30)
+              )
+          ),
+          FlatButton(
+              onPressed: () {
+                practicePageState.checkAnswer(1);
+              },
+              color: Colors.blue,
+              textColor: Colors.white,
+              child: Text(
+                  "1",
+                  style: TextStyle(fontSize: 30)
+              )
+          )
+        ]
+      )
     );
   }
 }

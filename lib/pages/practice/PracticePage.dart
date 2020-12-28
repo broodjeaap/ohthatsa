@@ -18,10 +18,10 @@ class PracticePage extends StatefulWidget {
       this.practiceSetup
   );
   @override
-  _PracticeState createState() => _PracticeState(practiceSetup);
+  PracticePageState createState() => PracticePageState(practiceSetup);
 }
 
-class _PracticeState extends State<PracticePage> {
+class PracticePageState extends State<PracticePage> {
   int _startCount = 0;
   bool _showCorrect = true;
   PracticeType practiceType;
@@ -31,37 +31,36 @@ class _PracticeState extends State<PracticePage> {
   int _correct = 0;
   int _incorrect = 0;
 
-  _PracticeState(PracticeSetup practiceSetup){
+  PracticePageState(PracticeSetup practiceSetup){
     this._startCount = practiceSetup.count;
     this._showCorrect = practiceSetup.showCorrect;
     practiceType = practiceSetup.practiceType;
     switch(practiceType){
       case (PracticeType.month): {
-        this.practiceThing = PracticeThingMonth();
+        this.practiceThing = PracticeThingMonth(this);
         break;
       }
       case (PracticeType.year): {
-        this.practiceThing = PracticeThingYear();
+        this.practiceThing = PracticeThingYear(this);
         break;
       }
       case (PracticeType.century): {
-        this.practiceThing = PracticeThingCentury();
+        this.practiceThing = PracticeThingCentury(this);
         break;
       }
       case (PracticeType.leap): {
-        this.practiceThing = PracticeThingLeap();
+        this.practiceThing = PracticeThingLeap(this);
         break;
       }
       case (PracticeType.mod): {
-        this.practiceThing = PracticeThingMod();
+        this.practiceThing = PracticeThingMod(this);
         break;
       }
       case (PracticeType.all): {
-        this.practiceThing = PracticeThingAll();
+        this.practiceThing = PracticeThingAll(this);
         break;
       }
       default: {
-
         break;
       }
     }
@@ -76,38 +75,6 @@ class _PracticeState extends State<PracticePage> {
         (_) => Expanded(child: Container(height: 50, color: Colors.blue))
     ));
     return Row(children: answerBoxes);
-  }
-
-  Widget getButtons(){
-    List<Widget> buttons = List<Widget>();
-    for(int i in [1,2,3,4,5,6,-1,0,-1]){
-      if (i == -1){
-        buttons.add(Container());
-        continue;
-      }
-      buttons.add(
-        FlatButton(
-            onPressed: () {
-              checkAnswer(i);
-            },
-            color: Colors.blue,
-            textColor: Colors.white,
-            child: Text(
-              i.toString(),
-              style: TextStyle(fontSize: 30)
-            )
-        )
-      );
-    }
-    return GridView.count(
-      primary: false,
-      crossAxisCount: 3,
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      shrinkWrap: true,
-      children: buttons
-    );
   }
 
   SimpleDialog finishedPracticeDialog() {
@@ -203,7 +170,7 @@ class _PracticeState extends State<PracticePage> {
                     practiceThing.getCurrentQuestionText()
                   ]
                 ),
-                getButtons(),
+                practiceThing.getButtons(),
                 Align(
                     alignment: FractionalOffset.bottomCenter,
                     child: getAnswerRow()

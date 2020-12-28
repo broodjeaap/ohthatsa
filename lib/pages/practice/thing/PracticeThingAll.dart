@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/src/widgets/text.dart';
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
+import 'package:ohthatsa/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
 
 class PracticeThingAll extends PracticeThing {
@@ -23,7 +24,7 @@ class PracticeThingAll extends PracticeThing {
     DateTime.december
   ];
 
-  PracticeThingAll() {
+  PracticeThingAll(PracticePageState practicePageState) : super(practicePageState) {
     next();
   }
 

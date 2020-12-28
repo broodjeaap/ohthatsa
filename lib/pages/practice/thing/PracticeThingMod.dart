@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ohthatsa/pages/practice/PracticeAnswer.dart';
+import 'package:ohthatsa/pages/practice/PracticePage.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThing.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 
 class PracticeThingMod extends PracticeThing {
   int current;
 
-  PracticeThingMod() {
+  PracticeThingMod(PracticePageState practicePageState) : super(practicePageState) {
     next();
   }
 
