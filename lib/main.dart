@@ -118,20 +118,11 @@ class RouteGenerator {
       case "/": {
         return MaterialPageRoute(builder: (context) => PracticeSetupPage());
       }
-      case "/monthValues": {
-        return MaterialPageRoute(builder: (context) => MonthValuesPage());
-      }
-      case "/years": {
-        return MaterialPageRoute(builder: (context) => YearsPage());
-      }
       case "/practice/setup": {
         return MaterialPageRoute(builder: (context) => PracticeSetupPage());
       }
       case "/practice/practice": {
         return MaterialPageRoute(builder: (context) => PracticePage(settings.arguments));
-      }
-      case "/notifications": {
-        return MaterialPageRoute(builder: (context) => NotificationsPage());
       }
       case "/instructions/month": {
         return MaterialPageRoute(builder: (context) => MonthInstructionPage());
