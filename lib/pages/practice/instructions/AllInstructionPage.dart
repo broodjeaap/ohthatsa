@@ -27,6 +27,16 @@ class _AllInstructionPageState extends State<AllInstructionPage> {
       color: Colors.green,
       fontSize: 20
   );
+  static const daysOfTheWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -42,24 +52,44 @@ class _AllInstructionPageState extends State<AllInstructionPage> {
                 child:Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Modulus (Mod) is the remainder after dividing", style: textStyle),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text("value.toString()", style: valueStyle),
-                          Text(" divided by 7 is " + "div.toString()", style: textStyle),
-                        ],
-                      ),
-                      Text("But that leaves " + "remainder.toString()" + " left over", style: textStyle),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text("So the result of ", style: textStyle),
-                          Text("value.toString()", style: valueStyle),
-                          Text(" mod 7 is ", style: textStyle),
-                          Text("remainder.toString()", style: textStyleU),
-                        ],
-                      ),
+                      Text("To calculate the weekday", style: textStyle),
+                      Text("Add all the values together:", style: textStyle),
+                      Text("Day of the Month", style: textStyle),
+                      Text("+", style: TextStyle(fontSize: 15)),
+                      Text("Month Value", style: textStyle),
+                      Text("+", style: TextStyle(fontSize: 15)),
+                      Text("Year Value", style: textStyle),
+                      Text("+", style: TextStyle(fontSize: 15)),
+                      Text("Century Value", style: textStyle),
+                      Text("-", style: TextStyle(fontSize: 15)),
+                      Text("Leap Value (1 or 0)", style: textStyle),
+                      Text("(if in January/February)", style: TextStyle(fontSize: 15)),
+                      Text("", style: TextStyle(fontSize: 15)),
+                      Text("Mod the result by 7", style: textStyle),
+                      Text("", style: TextStyle(fontSize: 15)),
+                      Text("And check what day it is:", style: textStyle),
+                      Table(
+                        children: List.generate(daysOfTheWeek.length, (i) =>
+                          TableRow(
+                            children: <Widget> [
+                              TableCell(
+                                child: Text(
+                                  daysOfTheWeek[i],
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 20)
+                                )
+                              ),
+                              TableCell(
+                                child: Text(
+                                  i.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 20)
+                                )
+                              )
+                            ]
+                          )
+                        )
+                      )
                     ]
                 ),
               ),
