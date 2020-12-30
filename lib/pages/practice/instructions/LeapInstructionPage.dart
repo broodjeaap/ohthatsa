@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
-import 'package:ohthatsa/util/Months.dart';
+import 'package:ohthatsa/util/TextStyles.dart';
 
 class LeapInstructionPage extends StatefulWidget {
   @override
@@ -31,17 +31,6 @@ class _LeapInstructionPageState extends State<LeapInstructionPage> {
     setState(() {});
   }
 
-  static const textStyle = TextStyle(
-      fontSize: 20
-  );
-  static const pageNum = TextStyle(
-      color: Colors.grey,
-      fontSize: 20
-  );
-  static const pageNumCurrent = TextStyle(
-      color: Colors.blue,
-      fontSize: 20
-  );
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -57,17 +46,17 @@ class _LeapInstructionPageState extends State<LeapInstructionPage> {
               child:Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("A year is a leap year if...", style: textStyle),
-                    Text("It is divisible by 4, unless...", style: textStyle),
-                    Text("It's also divisible by 100, unless...", style: textStyle),
-                    Text("It's divisible by 400", style: textStyle),
+                    Text20("A year is a leap year if..."),
+                    Text20("It is divisible by 4, unless..."),
+                    Text20("It's also divisible by 100, unless..."),
+                    Text20("It's divisible by 400"),
                     Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("1", style: pageNumCurrent),
-                        Text(" - ", style: pageNum),
-                        Text("2", style: pageNum),
+                        Text("1", style: TextStyles.textStyle20.apply(color: Colors.blue)),
+                        Text(" - ", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                        Text("2", style: TextStyles.textStyle20.apply(color: Colors.grey)),
                       ],
                     )
                   ]
@@ -86,14 +75,14 @@ class _LeapInstructionPageState extends State<LeapInstructionPage> {
                   ),
                   Visibility(
                     visible: divBy4,
-                    child: Text(year.toString() + " is divisible by 4", style: textStyle)
+                    child: Text20(year.toString() + " is divisible by 4")
                   ),
                   Visibility(
                       visible: divBy100,
                       child: Column(
                         children: <Widget>[
-                          Text("But...", style: textStyle),
-                          Text(year.toString() + " is also divisible by 100", style: textStyle)
+                          Text20("But..."),
+                          Text20(year.toString() + " is also divisible by 100")
                         ],
                       )
                   ),
@@ -101,26 +90,26 @@ class _LeapInstructionPageState extends State<LeapInstructionPage> {
                       visible: divBy400,
                       child: Column(
                         children: <Widget>[
-                          Text("But...", style: textStyle),
-                          Text(year.toString() + " is also divisible by 400", style: textStyle)
+                          Text20("But..."),
+                          Text20(year.toString() + " is also divisible by 400")
                         ],
                       )
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("So " + year.toString() + " is", style: textStyle),
-                      Text(this.isLeapYear ? " " : " not ", style: textStyle),
-                      Text("a leap year", style: textStyle)
+                      Text20("So " + year.toString() + " is"),
+                      Text20(this.isLeapYear ? " " : " not "),
+                      Text20("a leap year")
                     ],
                   ),
                   Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("1", style: pageNum),
-                      Text(" - ", style: pageNum),
-                      Text("2", style: pageNumCurrent),
+                      Text("1", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                      Text(" - ", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                      Text("2", style: TextStyles.textStyle20.apply(color: Colors.blue)),
                     ],
                   )
                 ],

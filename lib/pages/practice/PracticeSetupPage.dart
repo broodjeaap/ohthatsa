@@ -5,6 +5,7 @@ import 'package:ohthatsa/pages/practice/PracticeDatabase.dart';
 import 'package:ohthatsa/pages/practice/PracticeSetup.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/util/Extensions.dart';
+import 'package:ohthatsa/util/TextStyles.dart';
 
 import 'instructions/MonthInstructionPage.dart';
 
@@ -89,10 +90,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
-                    "How many rounds",
-                    style: TextStyle(fontSize: 20),
-                  ),
+                  Text20("How many rounds"),
                   NumberPicker.horizontal(
                     initialValue: _count,
                     minValue: 1,
@@ -103,10 +101,7 @@ class _PracticeSetupState extends State<PracticeSetupPage> {
                 ]
               ),
               CheckboxListTile(
-                title: Text(
-                  "Show correct Answer",
-                  style: TextStyle(fontSize: 20)
-                ),
+                title: Text20("Show correct Answer"),
                 value: _showCorrect,
                 onChanged: (value) {
                   setState(() {

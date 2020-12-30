@@ -10,6 +10,7 @@ import 'package:ohthatsa/pages/practice/thing/PracticeThingMonth.dart';
 import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/pages/practice/PracticeType.dart';
 import 'package:ohthatsa/pages/practice/thing/PracticeThingYear.dart';
+import 'package:ohthatsa/util/TextStyles.dart';
 
 
 class PracticePage extends StatefulWidget {
@@ -137,24 +138,9 @@ class PracticePageState extends State<PracticePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
-                        "Correct: " + _correct.toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                        )
-                    ),
-                    Text(
-                        (_startCount - _count).toString() + " Left",
-                        style: TextStyle(
-                          fontSize: 20,
-                        )
-                    ),
-                    Text(
-                        "Incorrect: " + _incorrect.toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                        )
-                    )
+                    Text20("Correct: " + _correct.toString()),
+                    Text20((_startCount - _count).toString() + " Left"),
+                    Text20("Incorrect: " + _incorrect.toString()),
                   ],
                 ),
                 Column(

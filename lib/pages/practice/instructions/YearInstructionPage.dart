@@ -4,6 +4,7 @@ import 'package:numberpicker/numberpicker.dart';
 
 import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
+import 'package:ohthatsa/util/TextStyles.dart';
 import 'package:term_glyph/term_glyph.dart' as glyph;
 
 class YearInstructionPage extends StatefulWidget {
@@ -36,30 +37,7 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
 
     setState(() {});
   }
-  static const formulaStyle = TextStyle(
-      fontSize: 20
-  );
-  static const formulaStyleU = TextStyle(
-      fontSize: 20,
-      decoration: TextDecoration.underline
-  );
-  static const YYStyle = TextStyle(
-      color: Colors.green,
-      fontSize: 20
-  );
-  static const YYStyleU = TextStyle(
-      color: Colors.green,
-      fontSize: 20,
-      decoration: TextDecoration.underline
-  );
-  static const pageNum = TextStyle(
-      color: Colors.grey,
-      fontSize: 20
-  );
-  static const pageNumCurrent = TextStyle(
-      color: Colors.blue,
-      fontSize: 20
-  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,62 +53,32 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                          "Take only the last two digits: ",
-                          style: TextStyle(fontSize: 25)
-                      ),
+                      Text20("Take only the last two digits: "),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text(
-                              "YY",
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 25
-                              )
-                          ),
-                          Text(
-                              "YY",
-                              style: YYStyle
-                          )
+                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.green)),
                         ],
                       ),
-                      Text(
-                          "Calculate:",
-                          style: TextStyle(fontSize: 25)
-                      ),
+                      Text20("Calculate:"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text(
-                            "(",
-                            style: formulaStyle,
-                          ),
-                          Text(
-                              "YY",
-                              style: YYStyle
-                          ),
-                          Text(
-                              " + floor(",
-                              style: formulaStyle
-                          ),
-                          Text(
-                              "YY",
-                              style: YYStyle
-                          ),
-                          Text(
-                              " / 4)) % 7",
-                              style: formulaStyle
-                          ),
+                          Text20("("),
+                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.green)),
+                          Text20(" + floor("),
+                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.green)),
+                          Text20(" / 4)) % 7"),
                         ],
                       ),
                       Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("1", style: pageNumCurrent),
-                          Text(" - ", style: pageNum),
-                          Text("2", style: pageNum),
+                          Text("1", style: TextStyles.textStyle20.apply(color: Colors.blue)),
+                          Text(" - ", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                          Text("2", style: TextStyles.textStyle20.apply(color: Colors.grey)),
                         ],
                       )
                     ],
@@ -151,67 +99,67 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("For ", style: formulaStyle),
-                            Text(centuriesString, style: formulaStyle),
-                            Text(year.toString().substring(2), style: YYStyle),
-                            Text(" our formula becomes: ", style: formulaStyle),
+                            Text20("For "),
+                            Text20(centuriesString),
+                            Text(year.toString().substring(2), style: TextStyles.textStyle20.apply(color: Colors.green)),
+                            Text20(" our formula becomes: "),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("(", style: formulaStyle),
-                            Text(yyString, style: YYStyle),
-                            Text(" + floor(", style: formulaStyle),
-                            Text(yyString, style: YYStyleU),
-                            Text(" / 4", style: formulaStyleU),
-                            Text(")) % 7", style: formulaStyle),
-                          ],
-                        ),
-                        Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text("(", style: formulaStyle),
-                            Text(yyString, style: YYStyle),
-                            Text(" + ", style: formulaStyle),
-                            Text("floor(" + yyDiv4.toString() + ")", style: formulaStyleU),
-                            Text(") % 7", style: formulaStyle),
+                            Text20("("),
+                            Text(yyString, style: TextStyles.textStyle20.apply(color: Colors.green)),
+                            Text20(" + floor("),
+                            Text(yyString, style: TextStyles.textStyle20u.apply(color: Colors.green)),
+                            Text20u(" / 4"),
+                            Text20(")) % 7"),
                           ],
                         ),
                         Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("(", style: formulaStyleU),
-                            Text(yyString, style: YYStyleU),
-                            Text(" + " + yyDiv4Floored.toString() + ")", style: formulaStyleU),
-                            Text(" % 7", style: formulaStyle),
+                            Text20("("),
+                            Text(yyString, style: TextStyles.textStyle20u.apply(color: Colors.green)),
+                            Text20(" + "),
+                            Text20u("floor(" + yyDiv4.toString() + ")"),
+                            Text20(") % 7"),
                           ],
                         ),
                         Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text((yy + yyDiv4Floored).toString(), style: formulaStyleU),
-                            Text(" % 7", style: formulaStyleU),
+                            Text20u("("),
+                            Text(yyString, style: TextStyles.textStyle20u.apply(color: Colors.green)),
+                            Text20u(" + " + yyDiv4Floored.toString() + ")"),
+                            Text20u(" % 7"),
                           ],
                         ),
                         Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("So the year value of " + year.toString() + " is: ", style: formulaStyle),
-                            Text(yearValue.toString(), style: formulaStyleU),
+                            Text20u((yy + yyDiv4Floored).toString()),
+                            Text20u(" % 7"),
+                          ],
+                        ),
+                        Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text20("So the year value of " + year.toString() + " is: "),
+                            Text20u(yearValue.toString()),
                           ],
                         ),
                         Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("1", style: pageNum),
-                            Text(" - ", style: pageNum),
-                            Text("2", style: pageNumCurrent),
+                            Text("1", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                            Text(" - ", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                            Text("2", style: TextStyles.textStyle20.apply(color: Colors.blue)),
                           ],
                         )
                       ]

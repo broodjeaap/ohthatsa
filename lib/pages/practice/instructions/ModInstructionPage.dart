@@ -3,6 +3,7 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:ohthatsa/other/AppDrawer.dart';
 import 'package:ohthatsa/util/DayCalculator.dart';
 import 'package:ohthatsa/util/Months.dart';
+import 'package:ohthatsa/util/TextStyles.dart';
 
 class ModInstructionPage extends StatefulWidget {
   @override
@@ -27,17 +28,6 @@ class _ModInstructionPageState extends State<ModInstructionPage> {
     setState(() {});
   }
 
-  static const textStyle = TextStyle(
-      fontSize: 20
-  );
-  static const textStyleU = TextStyle(
-    fontSize: 20,
-    decoration: TextDecoration.underline
-  );
-  static const valueStyle = TextStyle(
-      color: Colors.green,
-      fontSize: 20
-  );
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -53,7 +43,7 @@ class _ModInstructionPageState extends State<ModInstructionPage> {
                   child:Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Modulus (Mod) is the remainder after dividing", style: textStyle),
+                        Text20("Modulus (Mod) is the remainder after dividing"),
                         NumberPicker.integer(
                             initialValue: value,
                             minValue: 0,
@@ -63,18 +53,18 @@ class _ModInstructionPageState extends State<ModInstructionPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(value.toString(), style: valueStyle),
-                            Text(" divided by 7 is " + div.toString(), style: textStyle),
+                            Text(value.toString(), style: TextStyles.textStyle20.apply(color: Colors.green)),
+                            Text20(" divided by 7 is " + div.toString()),
                           ],
                         ),
-                        Text("But that leaves " + remainder.toString() + " left over", style: textStyle),
+                        Text20("But that leaves " + remainder.toString() + " left over"),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("So the result of ", style: textStyle),
-                            Text(value.toString(), style: valueStyle),
-                            Text(" mod 7 is ", style: textStyle),
-                            Text(remainder.toString(), style: textStyleU),
+                            Text20("So the result of "),
+                            Text(value.toString(), style: TextStyles.textStyle20.apply(color: Colors.green)),
+                            Text20(" mod 7 is "),
+                            Text(remainder.toString(), style: TextStyles.textStyle20.apply(decoration: TextDecoration.underline)),
                           ],
                         ),
                       ]
