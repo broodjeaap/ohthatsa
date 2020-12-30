@@ -57,8 +57,8 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.grey)),
-                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.green)),
+                          Text20("YY", color: Colors.grey),
+                          Text20("YY", color: Colors.green),
                         ],
                       ),
                       Text20("Calculate:"),
@@ -66,9 +66,9 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text20("("),
-                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.green)),
+                          Text20("YY", color: Colors.green),
                           Text20(" + floor("),
-                          Text("YY", style: TextStyles.textStyle20.apply(color: Colors.green)),
+                          Text20("YY", color: Colors.green),
                           Text20(" / 4)) % 7"),
                         ],
                       ),
@@ -76,9 +76,9 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("1", style: TextStyles.textStyle20.apply(color: Colors.blue)),
-                          Text(" - ", style: TextStyles.textStyle20.apply(color: Colors.grey)),
-                          Text("2", style: TextStyles.textStyle20.apply(color: Colors.grey)),
+                          Text20("1", color: Colors.blue),
+                          Text20(" - ", color: Colors.grey),
+                          Text20("2", color: Colors.grey),
                         ],
                       )
                     ],
@@ -101,7 +101,7 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                           children: <Widget>[
                             Text20("For "),
                             Text20(centuriesString),
-                            Text(year.toString().substring(2), style: TextStyles.textStyle20.apply(color: Colors.green)),
+                            Text20(year.toString().substring(2), color: Colors.green),
                             Text20(" our formula becomes: "),
                           ],
                         ),
@@ -109,10 +109,10 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text20("("),
-                            Text(yyString, style: TextStyles.textStyle20.apply(color: Colors.green)),
+                            Text20(yyString, color: Colors.green),
                             Text20(" + floor("),
-                            Text(yyString, style: TextStyles.textStyle20u.apply(color: Colors.green)),
-                            Text20u(" / 4"),
+                            Text20(yyString, color: Colors.green),
+                            Text20(" / 4", decor: TextDecoration.underline),
                             Text20(")) % 7"),
                           ],
                         ),
@@ -121,9 +121,9 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text20("("),
-                            Text(yyString, style: TextStyles.textStyle20u.apply(color: Colors.green)),
+                            Text20(yyString, color: Colors.green),
                             Text20(" + "),
-                            Text20u("floor(" + yyDiv4.toString() + ")"),
+                            Text20("floor(" + yyDiv4.toString() + ")", decor: TextDecoration.underline),
                             Text20(") % 7"),
                           ],
                         ),
@@ -131,18 +131,18 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text20u("("),
-                            Text(yyString, style: TextStyles.textStyle20u.apply(color: Colors.green)),
-                            Text20u(" + " + yyDiv4Floored.toString() + ")"),
-                            Text20u(" % 7"),
+                            Text20("(", decor: TextDecoration.underline),
+                            Text20(yyString, color: Colors.green, decor: TextDecoration.underline),
+                            Text20(" + " + yyDiv4Floored.toString() + ")", decor: TextDecoration.underline),
+                            Text20(" % 7"),
                           ],
                         ),
                         Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text20u((yy + yyDiv4Floored).toString()),
-                            Text20u(" % 7"),
+                            Text20((yy + yyDiv4Floored).toString(), decor: TextDecoration.underline),
+                            Text20(" % 7", decor: TextDecoration.underline),
                           ],
                         ),
                         Text(glyph.unicodeGlyphs.downArrow, style: TextStyle(fontSize: 15)),
@@ -150,16 +150,16 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text20("So the year value of " + year.toString() + " is: "),
-                            Text20u(yearValue.toString()),
+                            Text20(yearValue.toString(), decor: TextDecoration.underline),
                           ],
                         ),
                         Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("1", style: TextStyles.textStyle20.apply(color: Colors.grey)),
-                            Text(" - ", style: TextStyles.textStyle20.apply(color: Colors.grey)),
-                            Text("2", style: TextStyles.textStyle20.apply(color: Colors.blue)),
+                            Text20("1", color: Colors.grey),
+                            Text20(" - ", color: Colors.grey),
+                            Text20("2", color: Colors.blue),
                           ],
                         )
                       ]
