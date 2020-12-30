@@ -89,11 +89,14 @@ class PracticeThingLeap extends PracticeThing {
   }
 
   Widget getButtons(){
-    return Container(
+    return GridView.count(
+        primary: false,
+        crossAxisCount: 2,
         padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        shrinkWrap: true,
+        children: <Widget>[
           FlatButton(
               onPressed: () {
                 practicePageState.checkAnswer(0);
@@ -117,7 +120,6 @@ class PracticeThingLeap extends PracticeThing {
               )
           )
         ]
-      )
     );
   }
 }
