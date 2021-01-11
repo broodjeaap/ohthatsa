@@ -111,7 +111,7 @@ class _YearInstructionPageState extends State<YearInstructionPage> {
                             Text20("("),
                             Text20(yyString, color: Colors.green),
                             Text20(" + floor("),
-                            Text20(yyString, color: Colors.green),
+                            Text20(yyString, color: Colors.green, decor: TextDecoration.underline),
                             Text20(" / 4", decor: TextDecoration.underline),
                             Text20(")) % 7"),
                           ],
