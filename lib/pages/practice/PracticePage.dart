@@ -183,7 +183,7 @@ class PracticePageState extends State<PracticePage> {
 
       showDialog(
         context: context,
-        child: finishedPracticeDialog()
+        builder: (context) => finishedPracticeDialog()
       ).then((val) {
         Navigator.pop(context);
       });
