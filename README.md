@@ -11,7 +11,7 @@ Mostly made to try out Dart/Flutter.
 
 ## Method
 
-The day of the week can be caculated by:  
+The day of the week can be calculated by:  
 `(day value + month value + year value + century value + leap year value) % 7`
 
 Every one of these value comes from a set of constants or is calculable from the date.  
